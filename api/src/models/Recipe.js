@@ -1,0 +1,51 @@
+const { DataTypes } = require("sequelize");
+// Exportamos una funcion que define el modelo
+// Luego le injectamos la conexion a sequelize.
+module.exports = (sequelize) => {
+  // defino el modelo
+  sequelize.define("recipe", {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true,
+    },
+    idOriginal:{
+      type: DataTypes.INTEGER,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    summary: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    healthScore: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 0,
+        max: 100
+      }
+    }, 
+    Steps: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    image:{
+      type: DataTypes.STRING,
+    },
+    diets:{
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull:false,
+    },
+    servings:{
+      type: DataTypes.INTEGER,
+      allowNull:false,
+    },
+    cookingTime:{
+      type: DataTypes.INTEGER,
+      allowNull:false,
+    }
+  },{timestamps: false});
+};
