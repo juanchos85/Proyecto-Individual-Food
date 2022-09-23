@@ -7,11 +7,13 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from '../src/Reduxx/Store/store'
 import { BrowserRouter } from 'react-router-dom';
+import Welcome from './components/Welcome/Welcome';
 dotenv.config();
 
 ReactDOM.render(
   <BrowserRouter>
   <Provider store={store}>
+ 
   <React.StrictMode>
     <App />
   </React.StrictMode>,

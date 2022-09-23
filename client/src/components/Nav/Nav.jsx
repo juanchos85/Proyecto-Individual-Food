@@ -29,10 +29,7 @@ class Nav extends Component {
         return (
             <div>
                 <Link to="/" component={Welcome}></Link>
-              
-               <Link to="/SearchBar">Search</Link>
-               <Link to="/Card">card</Link>
-               {/* <Link to="/CardDetail/:id">CArdDetail</Link> */}
+               <Link to="/RecipesCreated">recetas creadas</Link>
                <Link to="/CreateRecipe">Crea tu propia receta</Link>
             </div>
         );

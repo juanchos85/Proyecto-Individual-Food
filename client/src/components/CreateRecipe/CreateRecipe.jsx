@@ -9,12 +9,14 @@ export default function CreateRecipe() {
     summary: "",
     healthScore: 0,
     steps: [],
+    dishType:[],
+    idOriginal:123,
     image: "",
     diets: [],
     servings: 0,
     cookingTime: 0,
   });
-
+// setState("")
   const handleChange = (e) => {
     setState({
       ...state,
@@ -36,8 +38,15 @@ export default function CreateRecipe() {
     
     setState({
         ...state,
-        diets: [...state.diets, e.target.value]
+        diets: [ e.target.value]
     });
+}
+const handleChangeDishType = (e) =>{
+    
+  setState({
+      ...state,
+      dishType: [ e.target.value]
+  });
 }
   return (
     <form
@@ -76,6 +85,17 @@ export default function CreateRecipe() {
             value={state.healthScore}
             onChange={(e) => {
               handleChange(e);
+            }}
+          />
+        </div>
+        <div>
+          <label>tipo de plato: </label>
+          <input
+            name="dishType"
+            type="text"
+            value={state.dishType}
+            onChange={(e) => {
+              handleChangeDishType(e);
             }}
           />
         </div>
@@ -126,7 +146,7 @@ export default function CreateRecipe() {
         <div>
           <label>Tiempo de cocción: </label>
           <input
-            name="coockingTime"
+            name="cookingTime"
             type="number"
             value={state.cookingTime}
             onChange={(e) => {
@@ -134,7 +154,7 @@ export default function CreateRecipe() {
             }}
           />
         </div>
-        <h1>si completaste todos los pasos, tu receta esta lista para ser compartida</h1>
+    
         <button type='submit'>compartir receta</button>
       </div>
     </form>

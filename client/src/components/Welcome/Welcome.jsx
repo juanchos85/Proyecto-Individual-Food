@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Welcome(){
     return(
         <div>
-            soy Welcome pa
+             Welcome to your favorite app food
             <Link to="/home">Home</Link>
         </div>
     )

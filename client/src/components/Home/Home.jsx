@@ -11,20 +11,21 @@ import {
   ScoreOrder,
   NameOrder
 } from "../../Reduxx/Actions/actions";
+import SearchBar from "../Search/SearchBar";
 export default function Home() {
   const recipes = useSelector((state) => state.recipes);
   const dispatch = useDispatch();
-  console.log(recipes.length, " soy recipes from home");
-  const DietsTypes = useSelector((state) => state.diets);
-  const created = useSelector((state) => state.created);
+ 
 
+  
   // useEffect(() => {
-  //   dispatch(get_recipe());
-  // });
-
-  // useEffect(() => {
-  //   dispatch(get_Diets());
-  // });
+    //   dispatch(get_recipe());
+    // });
+    
+    useEffect(() => {
+      dispatch(get_Diets());
+    },[]);
+    const DietsTypes = useSelector((state) => state.diets);
   let s =
     recipes.length !== 0 &&
     recipes.map((el) => {
@@ -39,7 +40,7 @@ export default function Home() {
     });
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(showRecipesCreated());
+   
   }
   function HandlerDietsFilter(e) {
     dispatch(dietsFilter(e.target.value));
@@ -53,36 +54,23 @@ export default function Home() {
 
   return (
     <div>
-      <h1>soy home</h1>
+      <h1>home</h1>
       {s}
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <button type="submit">recetas creadas</button>
-      </form>
-      {created &&
-        created.map((el) => {
-          return (
-            <Card
-              name={el.name}
-              diets={el.diets}
-              image={el.image}
-              idOriginal={el.idOriginal}
-            />
-          );
-        })}
+      
+   <SearchBar/>
       <div>
         <select defaultValue="default" onChange={(e) => HandlerDietsFilter(e)}>
-          <option value="default">elije tu dieta pa</option>
+          <option value="default">opciones de dietas</option>
           {DietsTypes &&
             DietsTypes.map((el) => {
               return (
-                <option key={el.name} >
+                <option key={el.id} value={el.name}>
                   {el.name}
                 </option>
               );
             })}
-        </select>
-      </div>
-      
+        </select> 
+    </div>
       
       <div>
         <select defaultValue="default" onChange={(e) => handleOrderByName(e)}>
@@ -90,12 +78,14 @@ export default function Home() {
           <option value="ascendente">ascendente</option>
           <option value="descendente">descendente</option>
         </select>
+{/*       
         <select defaultValue="default" onChange={(e) => handleOrderByScore(e)}>
           orden por puntaje
           <option value="ascendente">ascendente</option>
           <option value="descendente">descendente</option>
         </select>
-      </div>
+      */}
+      </div> 
     </div>
   );
 }

@@ -39,39 +39,39 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    // case GET_DETAILS: {
-    //   console.log("action.payload" + action.payload);
-    //   console.log("stateL" + state.details);
-    //   return {
-    //     ...state,
-    //     details: action.payload,
-    //   };
-    // }
-    // case CREATE_RECIPE: {
-    //   console.log("action.payload" + action.payload);
-    //   console.log("stateL" + state.details);
-    //   return {
-    //     ...state,
-    //     msg: "creada con exito!",
-    //   };
-    // }
-    // case GET_DIETS: {
-    //   console.log("action.payload" + action.payload);
-    //   console.log("state details" + state.details);
-    //   return {
-    //     ...state,
-    //     diets: action.payload,
-    //   };
-    // }
+    case GET_DETAILS: {
+      console.log("action.payload" + action.payload);
+      console.log("stateL" + state.details);
+      return {
+        ...state,
+        details: action.payload,
+      };
+    }
+    case CREATE_RECIPE: {
+      console.log("action.payload" + action.payload);
+      console.log("stateL" + state.details);
+      return {
+        ...state,
+        msg: "creada con exito!",
+      };
+    }
+    case GET_DIETS: {
+      console.log("action.payload" + action.payload);
+      console.log("state details" + state.details);
+      return {
+        ...state,
+        diets: action.payload,
+      };
+    }
 
-    // case SHOW_RECIPES_CREATED: {
-    //   console.log("action.payload" + action.payload);
-    //   console.log("RECETAScREADADS" + state.creadas);
-    //   return {
-    //     ...state,
-    //     created: action.payload,
-    //   };
-    // }
+    case SHOW_RECIPES_CREATED: {
+      console.log("action.payload" + action.payload);
+      console.log("RECETAScREADADS" + state.creadas);
+      return {
+        ...state,
+        created: state.created.concat(action.payload),
+      };
+    }
     // case DIETS_FILTER: {
     //   let s = state.recipes.filter((el) => el.diets.includes(action.payload));
 

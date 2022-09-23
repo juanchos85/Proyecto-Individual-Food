@@ -4,14 +4,10 @@ const getInfo = function (obj) {
     name: obj.title,
     summary: obj.summary,
     healthScore: obj.healthScore,
-    steps:
-      obj.analyzedInstructions[0] &&
-      obj.analyzedInstructions[0].steps.map((obj) => {
-        obj.number, obj.step;
-      }),
+    dishTypes: obj.dishTypes.map((el)=>el),
+    steps: obj.analyzedInstructions[0]?.steps.map((el)=>el.step),
     image: obj.image,
-    createdByUser: false,
-    diets: obj.diets && obj.diets.map((obj) => obj),
+    diets: obj.diets.map((el)=>el) ,
     servings: obj.servings,
     cookingTime: obj.readyInMinutes,
   };

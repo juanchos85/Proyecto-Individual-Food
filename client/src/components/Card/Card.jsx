@@ -1,25 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Card ({name, diets, image, idOriginal}){
-   console.log("props en card "+name)
-   
-   
-
-    return( 
-    <div key = {idOriginal}>  
-    soy card pa
-     <h1 >name: {name} </h1>
-    {diets&& diets.map((el)=><h1>{el}</h1>)}
-     <img src={image} alt=""/> 
-    <Link to={`/CardDetail/${idOriginal}`} >
-        
+export default function Card({ name, diets, image, idOriginal }) {
+  return (
+    <div key={idOriginal}>
+      <Link to={`/CardDetail/${idOriginal}`}>
         <h1>{name}</h1>
-        </Link>
-</div>
-)
+      </Link>
+      {diets && diets.map((el) => <h1>{el}</h1>)}
+      <img src={image} alt="" />
+    </div>
+  );
 }
-      
 
 // Tipo de dieta (vegetariano, vegano,
 

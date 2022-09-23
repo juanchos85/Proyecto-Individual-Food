@@ -3,7 +3,6 @@ const {
   isElement,
   findRenderedDOMComponentWithTag,
 } = require("react-dom/test-utils");
-const { apiSpoon } = require("../../../apiSpoon/apiSpoon");
 const { DataTypes } = require("sequelize");
 require("dotenv").config();
 const { API_KEY } = process.env;
@@ -18,13 +17,13 @@ const getAllApiInformation = async () => {
     console.log("base precargada  ", verDb.length);
     return verDb;
   }
-  const data = apiSpoon();
+  // const data = apiSpoon();
 
-  // const { data } = await axios.get(
-  //   `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
-  // );
-  console.log("linea 24",);
-  const dataPretended = data.map((el) => {
+  const { data } = await axios.get(
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
+  );
+  console.log("linea 24");
+  const dataPretended = data.results.map((el) => {
     return getInfo(el);
   });
   try {
@@ -32,7 +31,7 @@ const getAllApiInformation = async () => {
     console.log("cargando db por 1° ", db.length);
     return db;
   } catch (error) {
-    console.log( "error catch juan");
+    console.log( "error catch juan", error);
     return error;
   }
 };

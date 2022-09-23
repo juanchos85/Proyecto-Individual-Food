@@ -29,7 +29,10 @@ module.exports = (sequelize) => {
         max: 100
       }
     }, 
-    Steps: {
+    dishTypes:{
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    steps: {
       type: DataTypes.ARRAY(DataTypes.STRING),
     },
     image:{
