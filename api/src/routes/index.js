@@ -73,6 +73,9 @@ router.get("/recipes", async (req, res) => {
         where: {
             name: { [Op.iLike]: `%${name}%`, },
                },
+               include: DietsTypes
+                
+               
       });
       console.log("soy info ", info);
       return res.status(200).json(info);
@@ -127,7 +130,9 @@ router.post("/recipes", async (req, res) => {
 });
 
 router.get("/diets", async (req, res) => {
-  const diets = await DietsTypes.findAll(); //
+  const diets = await DietsTypes.findAll({
+    include: Recipe,
+  }); 
   console.log(diets.length, "soy all diets");
   try {
     console.log("diets linea 83 " + diets.length);
