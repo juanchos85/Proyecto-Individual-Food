@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { get_Detail } from "../../Reduxx/Actions/actions";
 
 export default function CardDetail(props) {
@@ -10,7 +10,7 @@ export default function CardDetail(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(get_Detail(id));
-  }, []);
+  }, [dispatch]);
   const details = useSelector((state) => state.details);
 
   return (
@@ -19,7 +19,7 @@ export default function CardDetail(props) {
       <img src={details.image} alt="" />
       <h1>diets:{details.diets}</h1>
       <h1>tipo de plato:{details.dishTypes}</h1>
-      <h1>resumen:{details.summary}</h1>
+      <p dangerouslySetInnerHTML={{__html:details.summary}}></p>
       <h1>pasos:{details.steps}</h1>
       <h1>puntaje de salud:{details.healthScore}</h1>
     </div>

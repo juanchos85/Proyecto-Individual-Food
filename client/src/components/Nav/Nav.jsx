@@ -28,7 +28,7 @@ class Nav extends Component {
     render() {
         return (
             <div>
-                <Link to="/" component={Welcome}></Link>
+                <Link to='/Home'>Home</Link>
                <Link to="/RecipesCreated">recetas creadas</Link>
                <Link to="/CreateRecipe">Crea tu propia receta</Link>
             </div>

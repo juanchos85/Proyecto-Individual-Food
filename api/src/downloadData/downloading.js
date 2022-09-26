@@ -59,11 +59,12 @@ const allDiets = async () => {
     ];
     
     dietas.map(async (dieta) => {
+      console.log("cargando dietsType primera vez")
       DietsTypes.findOrCreate({
         where: { name: dieta },
       });
     });
-    return await DietsTypes.findAll();
+    
   } catch (error) {
     console.log(error, "error catch");
     return error;

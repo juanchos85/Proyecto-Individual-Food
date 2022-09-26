@@ -8,6 +8,26 @@
 //  "servings": 4,
 //  "cookingTime":30}
 
+// console.log(
+//   "name ",
+//   name,
+//   "summary ",
+//   summary,
+//   "healthScore ",
+//   healthScore,
+//   "steps ",
+//   steps,
+//   "image ",
+//   image,
+//   "diets ",
+//   diets,
+//   "servings ",
+//   servings,
+//   "cookingTime ",
+//   cookingTime
+// );
+
+
 // const allDiets = async () => {
 //   const { data } = await axios.get(
 //     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`

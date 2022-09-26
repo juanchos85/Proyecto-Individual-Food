@@ -71,17 +71,11 @@ router.get("/recipes", async (req, res) => {
     try {
       const info = await Recipe.findAll({
         where: {
-          //   //   include:{
-          //   //     model:DietsTypes,attributes:['id', 'name'],
-          //   //     through:{attributes:[]}
-          //   //   },
-         
             name: { [Op.iLike]: `%${name}%`, },
-          
-        },
+               },
       });
       console.log("soy info ", info);
-      return res.status(200).json(getInfo(info));
+      return res.status(200).json(info);
     } catch (error) {
       console.log(error, " soy error de recipes")
       return res.status(400).json(error);
@@ -103,25 +97,8 @@ router.post("/recipes", async (req, res) => {
     servings,
     cookingTime,
   } = req.body;
-  console.log("name ", name);
-  console.log(
-    "name ",
-    name,
-    "summary ",
-    summary,
-    "healthScore ",
-    healthScore,
-    "steps ",
-    steps,
-    "image ",
-    image,
-    "diets ",
-    diets,
-    "servings ",
-    servings,
-    "cookingTime ",
-    cookingTime
-  );
+
+  
   if (
     !name ||
     !summary ||
@@ -131,6 +108,13 @@ router.post("/recipes", async (req, res) => {
     !servings
   )
     return res.status(404).send("Falta enviar datos obligatorios");
+    diets.map(async(el)=>{
+      const findDiet= await DietsTypes.findOrCreate({
+        where:{
+          name: el
+        }
+      })
+    })
 
   try {
     console.log("try");
@@ -155,12 +139,4 @@ router.get("/diets", async (req, res) => {
 
 module.exports = router;
 
-// {
-// "name": "name",
-//  "summary": "summary",
-//  "healthScore": 9,
-//  "steps": "lele",
-//  "image": "yes",
-//  "diets":"vegan",
-//  "servings": 4,
-//  "cookingTime":30,}
+

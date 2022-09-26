@@ -5,11 +5,15 @@ import {
   GET_DIETS,
   SHOW_RECIPES_CREATED,
   DIETS_FILTER,
-  SCORE_ORDER,
+  SCORE_ORDER_A,
+  SCORE_ORDER_D,
+  NAME_ORDER_A,
+  NAME_ORDER_D,
 } from "../Actions/actions";
 
 const initialState = {
   recipes: [],
+  orderState:[],
   details: [],
   diets: [],
   msg: {},
@@ -36,6 +40,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         recipes: action.payload,
+        orderState:action.payload,
       };
     }
 
@@ -61,6 +66,42 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         diets: action.payload,
+      };
+    }
+
+    case NAME_ORDER_A: {
+      let orders;
+         orders = order([...state.recipes], 'name');
+      return {
+        ...state,
+        recipes: orders,
+      };
+    }
+
+    case NAME_ORDER_D: {
+      let orders;
+         orders = order([...state.recipes], 'name').reverse();
+      return {
+        ...state,
+        recipes: orders,
+      };
+    }
+
+    case SCORE_ORDER_A: {
+      let orders;
+         orders = order([...state.recipes], 'healthScore');
+      return {
+        ...state,
+        recipes: orders,
+      };
+    }
+
+    case SCORE_ORDER_D: {
+      let orders;
+         orders = order([...state.recipes], 'healthScore').reverse();
+      return {
+        ...state,
+        recipes: orders,
       };
     }
 

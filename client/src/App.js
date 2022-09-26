@@ -19,7 +19,7 @@ function App() {
       <h1>Henry Food</h1>
       <Switch>
 
-      <Route exact path="/" componente={Welcome}/>
+      <Route exact path="/" component={Welcome}/>
       <React.Fragment>
       <Nav/>
       <Route exact path = "/home" component={Home}/>

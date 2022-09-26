@@ -5,7 +5,7 @@ const getInfo = function (obj) {
     summary: obj.summary,
     healthScore: obj.healthScore,
     dishTypes: obj.dishTypes.map((el)=>el),
-    steps: obj.analyzedInstructions[0]?.steps.map((el)=>el.step),
+    steps: obj.analyzedInstructions[0]?.steps.map(el => el.step),
     image: obj.image,
     diets: obj.diets.map((el)=>el) ,
     servings: obj.servings,
