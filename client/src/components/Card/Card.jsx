@@ -13,7 +13,7 @@ export default function Card({ name, diets, image, idOriginal }) {
   );
 }
 
-// Tipo de dieta (vegetariano, vegano,
+// Tipo de dieta (vegetariano, vegano
 
 // idOriginal: obj.id,
 // name: obj.title.toLowerCase(),

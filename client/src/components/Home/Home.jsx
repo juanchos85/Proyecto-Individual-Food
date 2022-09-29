@@ -22,8 +22,8 @@ export default function Home() {
 
     useEffect(() => {
       dispatch(get_Diets());
+      dispatch(get_recipe())
      setPaginado();
-     dispatch(get_recipe())
  
     },[]);
     const DietsTypes = useSelector((state) => state.diets);
@@ -54,9 +54,28 @@ export default function Home() {
 
   return (
     <div>
-      
-      
+      <span>
+
    <SearchBar/>
+      </span>
+      <div>
+
+<Paginate paginado={recipes} setPaginado={setPaginado}></Paginate>
+</div>
+<div>
+        <select defaultValue="default" onChange={(e) => handleOrderByName(e)}>
+          <option defaultValue='default'>orden por nombre</option>
+          <option value="ascendente">ascendente</option>
+          <option value="descendente">descendente</option>
+        </select>
+     
+        <select defaultValue="default" onChange={(e) => handleOrderByScore(e)}>
+        <option defaultValue='default'>orden por puntaje</option>          
+          <option value="ascendente">ascendente</option>
+          <option value="descendente">descendente</option>
+        </select>
+      
+      </div> 
       <div>
         <select defaultValue="default" onChange={(e) => HandlerDietsFilter(e)}>
           <option value="default">opciones de dietas</option>
@@ -83,22 +102,9 @@ export default function Home() {
           )
         })
         }
-        <Paginate paginado={recipes} setPaginado={setPaginado}></Paginate>
+       
       </div>
-      <div>
-        <select defaultValue="default" onChange={(e) => handleOrderByName(e)}>
-          <option defaultValue='default'>orden por nombre</option>
-          <option value="ascendente">ascendente</option>
-          <option value="descendente">descendente</option>
-        </select>
-     
-        <select defaultValue="default" onChange={(e) => handleOrderByScore(e)}>
-        <option defaultValue='default'>orden por puntaje</option>          
-          <option value="ascendente">ascendente</option>
-          <option value="descendente">descendente</option>
-        </select>
-      
-      </div> 
+   
     </div>
   );
 }

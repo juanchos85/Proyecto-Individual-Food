@@ -24,11 +24,11 @@ const recipes = useSelector((state)=>state.recipes)
     },[recipes])
     return(
         <div> 
-            <button name={`button ${current === 1 ? 'disable' : 'active'}`} onClick={()=>changePage(1)}>inicio</button>
-            <button name={`button ${current === 1 ? 'disable' : 'active'}`} onClick={()=>changePage(current-1)}>anterior</button>
+            <button className={`button ${current === 1}`} onClick={()=>changePage(1)}>inicio</button>
+            <button className={`button ${current === 1 }`} onClick={()=>changePage(current-1)}>anterior</button>
             <button>{current}</button>
-            <button name={`button ${current === total ? 'disable' : 'active'}`} onClick={()=>changePage(current + 1)}>siguiente</button>
-            <button name={`button ${current === total ? 'disable' : 'active'}`} onClick={()=>changePage(total)}>end</button>
+            <button className={`button ${current === total }`} onClick={()=>changePage(current + 1)}>siguiente</button>
+            <button className={`button ${current === total }`} onClick={()=>changePage(paginate)}>end</button>
         </div>
     )
 }

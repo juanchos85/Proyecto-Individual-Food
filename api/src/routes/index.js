@@ -1,14 +1,14 @@
 require("dotenv").config();
 const { default: axios } = require("axios");
 const { Router } = require("express");
-const { Op } = require("sequelize");
+const { Op, Association } = require("sequelize");
 const { API_KEY } = process.env;
 const {
   getAllApiInformation,
   allDiets,
 } = require("../downloadData/downloading");
 const { Recipe, DietsTypes } = require("../db");
-const {getInfo} = require('../downloadData/reutilizable')
+const { getInfo } = require("../downloadData/reutilizable");
 
 getAllApiInformation();
 allDiets();
@@ -41,51 +41,55 @@ router.get("/recipes/:id", async (req, res) => {
 });
 
 router.get("/recipesCreated", async (req, res) => {
-  console.log("hubo solicitud a recetas creadas");
   const created = await Recipe.findAll({
     where: {
-      idOriginal: {
-        [Op.eq]:123,
-      },
+      idOriginal: { [Op.is]: 123 },
     },
   });
-  console.log("soy created ", created);
   try {
+    console.log(created.length, " Soy created");
     if (!created) return res.status(400).send(" receta no  creada");
     return res.status(200).json(created);
   } catch (error) {
-    console.log(error, " soy error de mostrar recetas creadas")
+    console.log(error, " soy error de mostrar recetas creadas");
     return res.status(400).json(error);
   }
 });
 
-// if(name) {
-//   const namedCountry = await Country.findOne({ where: { name: {[Op.iLike]: `%${name}%` }}});
-//   namedCountry ? res.send(namedCountry) : res.status(404).send("Country can't be found");
-// } else {
-//   Country.findAll()
-//     .then((r) => res.send(r))
 router.get("/recipes", async (req, res) => {
   const { name } = req.query;
-  if (name) {
-    try {
-      const info = await Recipe.findAll({
+  try {
+    if (name) {
+      const dieta = await DietsTypes.findOne({
         where: {
-            name: { [Op.iLike]: `%${name}%`, },
-               },
-               include: DietsTypes
-                
-               
+          name: name,
+        },
       });
-      console.log("soy info ", info);
-      return res.status(200).json(info);
-    } catch (error) {
-      console.log(error, " soy error de recipes")
-      return res.status(400).json(error);
+      let receta = await Recipe.findAll();
+      let junction = receta.filter((el) => el.diets.includes(dieta.dataValues.name));
+      s.map(async (el) => {
+        await el.addDietsTypes(dieta.id);
+      });
+      if (junction) {
+        return res.status(200).json(junction);
+      }
+    } else {
+      const recetas = await Recipe.findAll({
+        where: {
+          name: { [Op.iLike]: `%${name}%` },
+        },
+      });
+      if (recetas.length > 0) {
+        return res.status(200).json(recetas);
+      } else {
+        return "try with another product!";
+      }
     }
-  } else {
     const info = await Recipe.findAll();
     return res.status(200).json(info);
+  } catch (error) {
+    console.log(error, " soy error de recipes");
+    return res.status(400).json(error);
   }
 });
 
@@ -101,30 +105,20 @@ router.post("/recipes", async (req, res) => {
     cookingTime,
   } = req.body;
 
-  
-  if (
-    !name ||
-    !summary ||
-    !healthScore ||
-    !steps ||
-    !diets ||
-    !servings
-  )
-    return res.status(404).send("Falta enviar datos obligatorios");
-    diets.map(async(el)=>{
-      const findDiet= await DietsTypes.findOrCreate({
-        where:{
-          name: el
-        }
-      })
-    })
+  if (!name || !summary || !healthScore || !steps || !diets || !servings)
+    return res.status(404).send("Faltan enviar datos obligatorios");
+  diets.map(async (el) => {
+    const findDiet = await DietsTypes.findOrCreate({
+      where: {
+        name: el,
+      },
+    });
+  });
 
   try {
-    console.log("try");
     const receta = await Recipe.create(req.body);
     return res.status(200).json(receta);
   } catch (error) {
-    console.log("catch error post ", error);
     return res.status(402).json(error);
   }
 });
@@ -132,10 +126,8 @@ router.post("/recipes", async (req, res) => {
 router.get("/diets", async (req, res) => {
   const diets = await DietsTypes.findAll({
     include: Recipe,
-  }); 
-  console.log(diets.length, "soy all diets");
+  });
   try {
-    console.log("diets linea 83 " + diets.length);
     return res.status(200).json(diets);
   } catch (error) {
     return res.status(404).json(error);
@@ -143,5 +135,3 @@ router.get("/diets", async (req, res) => {
 });
 
 module.exports = router;
-
-

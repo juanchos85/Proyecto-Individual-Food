@@ -15,9 +15,9 @@ const getAllApiInformation = async () => {
   
   if (verDb.length > 0) {
     console.log("base precargada  ", verDb.length);
+    allDiets()
     return verDb;
   }
-  // const data = apiSpoon();
 
   const { data } = await axios.get(
     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
@@ -36,34 +36,27 @@ const getAllApiInformation = async () => {
   }
 };
 
+
 const allDiets = async () => {
   const verDbDiets = await DietsTypes.findAll();
   if (verDbDiets.length > 0) {
-    console.log("base precargada ", verDbDiets.length);
+    console.log("base precargada diets", verDbDiets.length);
     return verDbDiets;
   }
   try {
-    const dietas = [
-      "vegan",
-      "lacto ovo vegetarian",
-      "whole 30",
-      "ketogenic",
-      "gluten free",
-      "fodmap friendly",
-      "dairy free",
-      "paleolithic",
-      "lacto ovo vegetarian",
-      "primal",
-      "pescatarian",
-      "dairy free"
-    ];
-    
-    dietas.map(async (dieta) => {
-      console.log("cargando dietsType primera vez")
+    const allrecipes = await Recipe.findAll();
+
+    const allDiets = [];
+   allrecipes.length && allrecipes.map((el)=>{
+     allDiets.push( el.diets)
+    })
+  const s = allDiets.flat(2)
+  s.map(async (dieta) => {
       DietsTypes.findOrCreate({
         where: { name: dieta },
       });
     });
+   
     
   } catch (error) {
     console.log(error, "error catch");
@@ -71,4 +64,4 @@ const allDiets = async () => {
   }
 };
 
-module.exports = { getAllApiInformation, allDiets }; 
+module.exports = { getAllApiInformation, allDiets}; 

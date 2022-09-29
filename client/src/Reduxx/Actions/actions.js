@@ -11,13 +11,11 @@ export const NAME_ORDER_A = "NAME_ORDER_A";
 export const NAME_ORDER_D = "NAME_ORDER_D";
 
 export function get_recipe(name) {
-  console.log("name" + name);
-  return async function (dispatch) {
+   return async function (dispatch) {
     try {
       const { data } = await axios.get(
         `http://localhost:3001/recipes?name=${name}`
       );
-      console.log("soy data length ", data.length, `${data} data entera`);
       return dispatch({ type: GET_RECIPE, payload: data });
     } catch (error) {
       console.log(error);
@@ -48,7 +46,6 @@ export function create_Recipe(object) {
         `http://localhost:3001/recipes`,
         object
       );
-      console.log("soy create recipes " + data);
       return dispatch({ type: CREATE_RECIPE, payload: data });
     } catch (error) {
       return dispatch({ type: CREATE_RECIPE, payload: error });
@@ -59,7 +56,6 @@ export function get_Diets() {
   return async function (dispatch) {
     try {
       const { data } = await axios.get("http://localhost:3001/diets");
-      console.log("soy data de diets " + data);
       return dispatch({ type: GET_DIETS, payload: data });
     } catch (error) {
       return dispatch({ type: GET_DIETS, payload: error });
@@ -71,7 +67,6 @@ export function showRecipesCreated() {
   return async function (dispatch) {
     try {
       const { data } = await axios.get("http://localhost:3001//recipesCreated");
-      console.log("soy recetas creadas", data);
       return dispatch({ type: SHOW_RECIPES_CREATED, payload: data });
     } catch (error) {
       return dispatch({ type: SHOW_RECIPES_CREATED, payload: error });
@@ -82,7 +77,6 @@ export function showRecipesCreated() {
 export function dietsFilter(diet) {
   return async function (dispatch) {
     try {
-      console.log("soy recetas creadas", diet);
       return dispatch({ type: DIETS_FILTER, payload: diet });
     } catch (error) {
       return dispatch({ type: DIETS_FILTER, payload: error });

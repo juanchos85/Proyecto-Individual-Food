@@ -7,7 +7,7 @@ const getInfo = function (obj) {
     dishTypes: obj.dishTypes.map((el)=>el),
     steps: obj.analyzedInstructions[0]?.steps.map(el => el.step),
     image: obj.image,
-    diets: obj.diets.map((el)=>el) ,
+    diets: obj.diets ,
     servings: obj.servings,
     cookingTime: obj.readyInMinutes,
   };
