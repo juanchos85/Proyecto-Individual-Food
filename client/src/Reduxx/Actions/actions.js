@@ -9,6 +9,7 @@ export const SCORE_ORDER_A = "SCORE_ORDER_A";
 export const SCORE_ORDER_D = "SCORE_ORDER_D";
 export const NAME_ORDER_A = "NAME_ORDER_A";
 export const NAME_ORDER_D = "NAME_ORDER_D";
+export const DELETE_RECIPE = "DELETE_RECIPE";
 
 export function get_recipe(name) {
    return async function (dispatch) {
@@ -61,6 +62,13 @@ export function get_Diets() {
       return dispatch({ type: GET_DIETS, payload: error });
     }
   };
+}
+
+export const deleteRecipe = (id)=> {
+  return {
+    type: DELETE_RECIPE,
+    payload: id
+  }
 }
 
 export function showRecipesCreated() {

@@ -1,0 +1,21 @@
+.body{
+    background-image: url(../../Images/images\(5\).jpg);
+border: red
+}
+
+.img{
+    background-repeat: no-repeat;
+    background-position: 90%;
+    background-size: 30%;
+    border-color: rgb(134, 2, 42);
+    border:solid;
+    border-radius: 9px;
+    background-size: 15%;
+}
+
+
+.summary{
+    font-size: small;
+    justify-content: center;
+    width: 30%;
+}

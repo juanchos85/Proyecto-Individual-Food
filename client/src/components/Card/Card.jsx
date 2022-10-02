@@ -1,14 +1,28 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteRecipe } from "../../Reduxx/Actions/actions";
+import Style from './Card.module.css'
 
-export default function Card({ name, diets, image, idOriginal }) {
+export default function Card({ name, diets, image, idOriginal, cookingTime, servings, deleteRecipe }) {
+
+  const dispatch =useDispatch()
+
+  
   return (
-    <div key={idOriginal}>
+    <div className={Style.card} key={idOriginal}>
+      <button className={Style.close} onClick={()=>dispatch(deleteRecipe(idOriginal))}>x</button>
+
+     
       <Link to={`/CardDetail/${idOriginal}`}>
-        <h1>{name}</h1>
+        <h4 className={Style.title}>{name}</h4>
       </Link>
-      {diets && diets.map((el) => <h1>{el}</h1>)}
-      <img src={image} alt="" />
+      <section>
+        <h5>Cooking Time: {cookingTime} minutes</h5>
+        <h5>Servings: {servings} persons</h5>
+        <h5>Diets: {diets}</h5>
+      </section>
+      <img className={Style.img} src={image} alt="" />
     </div>
   );
 }

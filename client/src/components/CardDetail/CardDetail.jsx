@@ -1,8 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { get_Detail } from "../../Reduxx/Actions/actions";
+import Style from "./CardDetail..module.css";
 
 export default function CardDetail(props) {
   const { id } = useParams();
@@ -14,14 +15,24 @@ export default function CardDetail(props) {
   const details = useSelector((state) => state.details);
 
   return (
-    <div>
-      <h1>name :{details.name}</h1>
-      <img src={details.image} alt="" />
-      <h1>diets:{details.diets}</h1>
-      <h1>tipo de plato:{details.dishTypes}</h1>
-      <p dangerouslySetInnerHTML={{__html:details.summary}}></p>
-      <h1>pasos:{details.steps}</h1>
-      <h1>puntaje de salud:{details.healthScore}</h1>
+    <div className={Style.body}>
+      <div>
+        <h1>{details.name}</h1>
+      </div>
+      <div>
+        <img className={Style.img} src={details.image} alt="" />
+      </div>
+
+      <h1>Diets Type: {details.diets}</h1>
+      <h1>Dish Type: {details.dishTypes}</h1>
+      <h1>Summary: </h1>
+      <h6
+        className={Style.summary}
+        dangerouslySetInnerHTML={{ __html: details.summary }}
+      ></h6>
+      <h1>Cooking Steps: </h1>
+      <h6>{details.steps}</h6>
+      <h1>Health Score: {details.healthScore}</h1>
     </div>
   );
 }

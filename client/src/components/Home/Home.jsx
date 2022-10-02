@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
 import { useEffect } from "react";
 import Paginate from "../Paginate/Paginate";
+import Style from '../Home/Home.module.css';
 import {
   get_Diets,
   get_recipe,
@@ -12,6 +13,7 @@ import {
   ScoreOrderD,
   NameOrderA,
   NameOrderD,
+  deleteRecipe,
 } from "../../Reduxx/Actions/actions";
 import SearchBar from "../Search/SearchBar";
 export default function Home() {
@@ -21,11 +23,14 @@ export default function Home() {
  
 
     useEffect(() => {
+      if(recipes.length ===0){
       dispatch(get_Diets());
       dispatch(get_recipe())
-     setPaginado();
+      setPaginado();
+      deleteRecipe()
+    }
  
-    },[]);
+    },[dispatch, recipes]);
     const DietsTypes = useSelector((state) => state.diets);
 
   function handleSubmit(e) {
@@ -53,9 +58,8 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <span>
-
+    <div className={Style.Home}>
+      <span className={Style.search}>
    <SearchBar/>
       </span>
       <div>
@@ -89,15 +93,18 @@ export default function Home() {
             })}
         </select> 
     </div>
-      <div>
+      <div className={Style.cards}>
         {paginado &&paginado.map((el)=>{
           return(
           <Card
             key={el.idOriginal}
+            deleteRecipe={deleteRecipe}
             name={el.name}
             idOriginal={el.idOriginal}
             image={el.image}
             servings={el.servings}
+            cookingTime={el.cookingTime}
+            diets={el.diets}
           />
           )
         })

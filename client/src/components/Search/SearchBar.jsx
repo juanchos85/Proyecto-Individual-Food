@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { get_recipe } from "../../Reduxx/Actions/actions";
 import { useRef } from "react";
+import Style from './Search.module.css'
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const pepe = lele.current.value
           placeholder="busqueda de producto..."
           onChange={(e) => handleChanges(e)}
         />
-        <input type="submit" value="Agregar" />
+        <input className={Style.button} type="submit" value="Agregar" />
       </form>
 
       

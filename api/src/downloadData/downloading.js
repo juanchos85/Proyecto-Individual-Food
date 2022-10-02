@@ -11,11 +11,10 @@ const { getInfo } = require("../downloadData/reutilizable");
 
 const getAllApiInformation = async () => {
   const verDb = await Recipe.findAll();
-  console.log("linea 15")
   
   if (verDb.length > 0) {
     console.log("base precargada  ", verDb.length);
-    allDiets()
+    // allDiets()
     return verDb;
   }
 

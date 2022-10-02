@@ -1,5 +1,6 @@
 import {
   GET_DETAILS,
+  DELETE_RECIPE,
   GET_RECIPE,
   CREATE_RECIPE,
   GET_DIETS,
@@ -62,6 +63,22 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case SHOW_RECIPES_CREATED: {
+      return {
+        ...state,
+        created: action.payload,
+      };
+    }
+
+    case DELETE_RECIPE:{
+     
+     
+      return{
+        ...state,
+        recipes: state.recipes.filter(receta => receta.idOriginal !== action.payload)
+      }
+    }
+
     case NAME_ORDER_A: {
       let orders;
          orders = order([...state.recipes], 'name');
@@ -98,12 +115,6 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case SHOW_RECIPES_CREATED: {
-      return {
-        ...state,
-        created: state.created.concat(action.payload),
-      };
-    }
     case DIETS_FILTER: {
       let filter = state.recipes.filter((el) => el.diets.includes(action.payload));
 

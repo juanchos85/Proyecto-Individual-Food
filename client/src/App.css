@@ -1,7 +1,12 @@
 .App {
   text-align: center;
 }
-
+.body,input{
+  font-family: 'Times New Roman', Times, serif;
+}
+:root{
+  color:#282c34;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

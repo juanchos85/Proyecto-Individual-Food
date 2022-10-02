@@ -65,28 +65,34 @@ router.get("/recipes", async (req, res) => {
           name: name,
         },
       });
-      let receta = await Recipe.findAll();
-      let junction = receta.filter((el) => el.diets.includes(dieta.dataValues.name));
-      s.map(async (el) => {
-        await el.addDietsTypes(dieta.id);
-      });
-      if (junction) {
-        return res.status(200).json(junction);
-      }
-    } else {
-      const recetas = await Recipe.findAll({
-        where: {
-          name: { [Op.iLike]: `%${name}%` },
-        },
-      });
-      if (recetas.length > 0) {
-        return res.status(200).json(recetas);
-      } else {
-        return "try with another product!";
+      if (dieta) {
+        let receta = await Recipe.findAll();
+        let junction = receta.filter((el) => el.diets.includes(dieta.name));
+        receta.map(async (el) => {
+          await el.addDietsTypes(dieta.id);
+        });
+        if (junction) {
+          return res.status(200).json(junction);
+        }
+      } else if(name){
+        const recetas = await Recipe.findAll({
+          where: {
+            name: { [Op.iLike]: `%${name}%` },
+          },
+        });
+        if (recetas.length > 0) {
+          return res.status(200).json(recetas);
+        } else {
+          return "try with another product!";
+        }
       }
     }
-    const info = await Recipe.findAll();
-    return res.status(200).json(info);
+     else{
+     
+        const info = await Recipe.findAll();
+        return res.status(200).json(info);
+      }
+    
   } catch (error) {
     console.log(error, " soy error de recipes");
     return res.status(400).json(error);
@@ -105,7 +111,7 @@ router.post("/recipes", async (req, res) => {
     cookingTime,
   } = req.body;
 
-  if (!name || !summary || !healthScore || !steps || !diets || !servings)
+  if (!name || !summary ||!steps || !diets )
     return res.status(404).send("Faltan enviar datos obligatorios");
   diets.map(async (el) => {
     const findDiet = await DietsTypes.findOrCreate({

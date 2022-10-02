@@ -1,0 +1,19 @@
+.background{
+    background-color: rgb(180, 160, 43);
+    align-content: flex-start;
+    flex-direction: column;
+    height: 430px;;
+}
+
+.placeHolder{
+    color: white;
+    background-color: brown;
+}
+.button{
+    color:rgb(75, 138, 94);
+    background-color:rgb(36, 41, 41);
+}
+.button:hover{
+    background-color: black;
+    color: green;
+}

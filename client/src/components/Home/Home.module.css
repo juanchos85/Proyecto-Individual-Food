@@ -1,0 +1,40 @@
+.Home{
+  overflow-x: hidden;
+  background-image:url( ../../Images/download\ \(1\).jpg);
+  display: grid;
+  
+    /* display: column;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    padding: auto;
+    margin-top: auto;
+    display:ruby-base-container;
+     background-attachment: fixed;
+     background-size: cover;
+     background-position: center; 
+     width: 100vw; 
+     height: 100vw;  */
+}
+
+
+
+.cards {
+    justify-content: center;
+    height: auto;
+    align-items: center;
+    margin-right: 2cm;
+    padding: 0.25rem;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+  }
+  .serach{
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: left;
+    justify-items: left;
+  }
+  
