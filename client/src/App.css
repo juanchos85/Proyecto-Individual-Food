@@ -4,6 +4,15 @@
 .body,input{
   font-family: 'Times New Roman', Times, serif;
 }
+
+body{
+  /* background:url('./Images/New-Project.jpg'); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+
+}
 :root{
   color:#282c34;
 }

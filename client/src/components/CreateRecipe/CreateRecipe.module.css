@@ -1,8 +1,16 @@
 .background{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 1rem;
+    padding: 1rem;
     background-color: rgb(180, 160, 43);
-    align-content: flex-start;
+    /* align-content: flex-start;
     flex-direction: column;
     height: 430px;;
+} */
 }
 
 .placeHolder{
@@ -16,4 +24,17 @@
 .button:hover{
     background-color: black;
     color: green;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 1rem;
+    padding: 1rem;
+    /* display: flex;
+	flex-direction: column;
+	align-items: center; */
 }

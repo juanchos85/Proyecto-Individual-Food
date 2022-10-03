@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { get_recipe } from "../../Reduxx/Actions/actions";
 import { useRef } from "react";
 import Style from './Search.module.css'
+import { useEffect } from "react";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ export default function SearchBar() {
 const pepe = lele.current.value
     dispatch(get_recipe(pepe));
   }
+  useEffect(()=>{
+    dispatch(get_recipe(""))
+  },[])
   return (
     <div>
       <form

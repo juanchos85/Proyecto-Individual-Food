@@ -15,24 +15,27 @@ export default function CardDetail(props) {
   const details = useSelector((state) => state.details);
 
   return (
-    <div className={Style.body}>
-      <div>
+    <div className={Style.parent}>
+      <div className={Style.div1}>
         <h1>{details.name}</h1>
       </div>
-      <div>
+      <div className={Style.div2}>
         <img className={Style.img} src={details.image} alt="" />
-      </div>
 
-      <h1>Diets Type: {details.diets}</h1>
-      <h1>Dish Type: {details.dishTypes}</h1>
-      <h1>Summary: </h1>
-      <h6
-        className={Style.summary}
-        dangerouslySetInnerHTML={{ __html: details.summary }}
-      ></h6>
-      <h1>Cooking Steps: </h1>
-      <h6>{details.steps}</h6>
-      <h1>Health Score: {details.healthScore}</h1>
+        <p>Diets Type: {details.diets}</p>
+        <p>Dish Type: {details.dishTypes}</p>
+        <p>Health Score: {details.healthScore}</p>
+      </div>
+      <div className={Style.div3}>
+        <div>
+          <p>Summary: </p>
+          <p dangerouslySetInnerHTML={{ __html: details.summary }}></p>
+        </div>
+        <div>
+          <p>Cooking Steps: </p>
+          <p>{details.steps}</p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,46 +1,84 @@
 .img{
-    background-repeat: no-repeat;
+    margin-top: 1.5rem;
+    width: 280px;
+    height: 100px;
+    position: relative;
+    background-color: aliceblue;
+    /* background-repeat: no-repeat;
     align-items: center;
     background-position: 50%;
     border-radius: 1rem;
     background-size: 50% ;
      height: 3cm;
-    width: 90%;
+    width: 90%; */
+}
+.img img{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  object-fit: cover;
+  width:100%;
+  height:100%;
 }
 .title{
-    color:#282c34;
+    /* color:#282c34;
     margin-top: 3cm;
-    size: 10cm;
+    size: 10cm; */
 }
 .title:hover{
-    color:aqua;
-    /* transform: translateY(-15px); */
+    /* color:aqua;
+    transform: translateY(-15px);
     right: 1cm;
-    left: 1cm;
+    left: 1cm; */
 }
-
-.card{
+.card {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    max-height: 400px;
+    padding: 1.5rem;
+    background-color: #212121;
+    transition: border-radius cubic-bezier(0.075, 0.82, 0.165, 1) 1s,
+                 transform cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+   }
+   
+   .card:hover {
+    border-bottom-right-radius: 50px;
+    border-top-left-radius: 50px;
+    /* transform: scale(1.05); */
+   }
+   
+
+/* .card{ */
+    /* background-color: aliceblue; */
+    /* position: relative;
     border-radius: 8px;
-    /* height: 5cm; */
-    /* width: 3cm; */
+    height: 5cm;
+    width: 3cm;
     margin: 1cm;
     border:solid;
     border-color: rgb(134, 2, 42);
     background-color:rgb(13, 77, 114);
     width: fit-content;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; */
 
     
-}
-.card:hover{
-    transform: translateX(-15px);
-    box-shadow: olive;
-}
+/* } */
+/* .card:hover{ */
+    /* transform: translateX(-15px);
+    box-shadow: olive; */
+/* } */
 .close{
-    top: 0.5cm;
-    right: 0.5cm;
+    
+    background-color: red;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 90%;
+    /* 
     height: 0.5cm;
     width: 0.5cm;
     box-sizing: 1cm;
@@ -50,14 +88,24 @@
     border-color: blueviolet;
     border:2cm;
     background-color: rgb(97, 96, 96);
-    border-color:blue
+    border-color:blue */
 }
-.close:hover{
-    background-color: black;
-    color: red;
-}
-.card>section{
-    display:table-row-group;
-    
-    grid-template-rows: repeat(3, 1fr);
-}
+/* .close:hover{ */
+    /* background-color: black;
+    color: red; */
+/* } */
+.card>section { 
+    margin-left: 2rem;
+    min-height: 120px;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+ }
+
+ .card>section p{
+    color:white;
+    margin:0;
+    text-align: left;
+ }

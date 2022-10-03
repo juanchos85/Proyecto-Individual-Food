@@ -6,9 +6,9 @@ import Style from "./Nav.module.css";
 function Nav() {
   return (
     <div className={Style.Nav}>
-      <div className={Style.components}>
+      <span className={Style.components}>
         <Link className={Style.title} to="/Home">Home</Link>
-      </div>
+      </span>
       <span className={Style.components}>
         <Link className={Style.title} to="/RecipesCreated">Recipes Created</Link>
       </span>

@@ -1,6 +1,38 @@
-.body{
+.parent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 4fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+    .div1 { grid-area: 1 / 1 / 2 / 5; }
+    .div2 { grid-area: 2 / 1 / 3 / 3; }
+    .div3 { grid-area: 2 / 3 / 3 / 5; }
+
+    .div2 img{
+        height: 200px;
+        width: 200px;
+    }
+
+    .div3 div{
+        overflow-y: scroll;
+        height: 200px;
+    }
+
+
+
+
+
+
+
+
+
+/* .body{
     background-image: url(../../Images/images\(5\).jpg);
-border: red
+    background-color: crimson;
+border: red;
+margin:0;
 }
 
 .img{
@@ -18,4 +50,4 @@ border: red
     font-size: small;
     justify-content: center;
     width: 30%;
-}
+} */

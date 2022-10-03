@@ -23,14 +23,20 @@ export default function Home() {
  
 
     useEffect(() => {
-      if(recipes.length ===0){
+      if(recipes.length === 0){
       dispatch(get_Diets());
       dispatch(get_recipe())
       setPaginado();
       deleteRecipe()
     }
- 
     },[dispatch, recipes]);
+
+    useEffect(()=>{
+      dispatch(get_Diets());
+      dispatch(get_recipe())
+    }, []
+    )
+
     const DietsTypes = useSelector((state) => state.diets);
 
   function handleSubmit(e) {

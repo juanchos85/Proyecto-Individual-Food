@@ -11,18 +11,23 @@ export default function Card({ name, diets, image, idOriginal, cookingTime, serv
   
   return (
     <div className={Style.card} key={idOriginal}>
-      <button className={Style.close} onClick={()=>dispatch(deleteRecipe(idOriginal))}>x</button>
 
+      <div >
+      <button className={Style.close} onClick={()=>dispatch(deleteRecipe(idOriginal))}>x</button>
+      </div>
      
       <Link to={`/CardDetail/${idOriginal}`}>
         <h4 className={Style.title}>{name}</h4>
       </Link>
       <section>
-        <h5>Cooking Time: {cookingTime} minutes</h5>
-        <h5>Servings: {servings} persons</h5>
-        <h5>Diets: {diets}</h5>
+        <p>⏲️ {cookingTime}' </p>
+        <p>🧍 {servings}</p>
+        <p>🍽️ {diets}</p>
       </section>
-      <img className={Style.img} src={image} alt="" />
+      <div  className={Style.img}>
+      <img src={image} alt="" />
+      </div>
+      
     </div>
   );
 }

@@ -132,7 +132,7 @@ export default function CreateRecipe() {
     }}
     className={Style.background}
     >
-      <div >
+      <div className={Style.body}>
         <div>
           <label>Name: </label>
           <input
