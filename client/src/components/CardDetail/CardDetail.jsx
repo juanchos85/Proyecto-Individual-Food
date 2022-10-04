@@ -27,14 +27,16 @@ export default function CardDetail(props) {
         <p>Health Score: {details.healthScore}</p>
       </div>
       <div className={Style.div3}>
-        <div>
-          <p>Summary: </p>
-          <p dangerouslySetInnerHTML={{ __html: details.summary }}></p>
-        </div>
+        
         <div>
           <p>Cooking Steps: </p>
           <p>{details.steps}</p>
         </div>
+        <div>
+          <p>Summary: </p>
+          <p dangerouslySetInnerHTML={{ __html: details.summary }}></p>
+        </div>
+        
       </div>
     </div>
   );

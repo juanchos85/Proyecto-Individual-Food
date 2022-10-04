@@ -133,7 +133,7 @@ export default function CreateRecipe() {
     className={Style.background}
     >
       <div className={Style.body}>
-        <div>
+       
           <label>Name: </label>
           <input
             name='name'
@@ -145,8 +145,7 @@ export default function CreateRecipe() {
             }}
           />
          {errors.name && <h6>{errors.name}</h6>}
-        </div>
-        <div>
+        
           <label>Summary: </label>
           <input
           className={Style.placeHolder}
@@ -158,8 +157,7 @@ export default function CreateRecipe() {
             }}
           />
            {errors.summary && <h6>{errors.summary}</h6>}
-        </div>
-        <div>
+       
           <label>HealthScore: </label>
           <input
           className={Style.placeHolder}
@@ -170,8 +168,7 @@ export default function CreateRecipe() {
               handleChange(e);
             }}
           />
-        </div>
-        <div>
+       
           <label>tipo de plato: </label>
           <input
           className={Style.placeHolder}
@@ -183,8 +180,7 @@ export default function CreateRecipe() {
             }}
           />
            {errors.dishType && <h6>{errors.dishType}</h6>}
-        </div>
-        <div>
+    
           <label>Step By Step: </label>
           <input
           className={Style.placeHolder}
@@ -196,8 +192,7 @@ export default function CreateRecipe() {
             }}
           />
            {errors.steps && <h6>{errors.steps}</h6>}
-        </div>
-        <div>
+   
           <label>Imagen: </label>
           <input
           className={Style.placeHolder}
@@ -209,8 +204,7 @@ export default function CreateRecipe() {
             }}
           />
           
-        </div>
-        <div>
+ 
           <label>tipo de dietas: </label>
         <select className={Style.placeHolder} defaultValue="default" onChange={(e) => HandlerDietsFilter(e)}> 
           <option className={Style.placeHolder} value="default">opciones de dietas</option>
@@ -224,9 +218,7 @@ export default function CreateRecipe() {
             })}
         </select> 
         {errors.diets && <h6>{errors.diets}</h6>}
-    </div>
-        
-        <div>
+   
           <label>Porciones</label>
           <input
           className={Style.placeHolder}
@@ -238,8 +230,7 @@ export default function CreateRecipe() {
             }}
           />
           {errors.servings && <h6>{errors.servings}</h6>}
-        </div>
-        <div>
+       
           <label>Tiempo de cocción: </label>
           <input
           className={Style.placeHolder}
@@ -251,7 +242,7 @@ export default function CreateRecipe() {
             }}
           />
           {errors.cookingTime && <h6>{errors.cookingTime}</h6>}
-        </div>
+    
     
         <button className={Style.button} type='submit'>compartir receta</button>
       </div>

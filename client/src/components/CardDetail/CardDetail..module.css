@@ -4,6 +4,7 @@
     grid-template-rows: 1fr 4fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    background-color: darkkhaki;
     }
     
     .div1 { grid-area: 1 / 1 / 2 / 5; }
@@ -13,11 +14,21 @@
     .div2 img{
         height: 200px;
         width: 200px;
+        text-align: justify;
+        border-radius: 10px;
+        border-color:brown;
+        border: 3px;
     }
 
     .div3 div{
         overflow-y: scroll;
         height: 200px;
+        border-radius: 10px;
+        border-color:brown;
+        border: 20px;
+        margin-right: 5px ;
+        padding-right: 5px;
+        text-align: justify;
     }
 
 
