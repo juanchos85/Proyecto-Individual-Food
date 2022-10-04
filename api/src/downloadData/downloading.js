@@ -14,14 +14,13 @@ const getAllApiInformation = async () => {
   
   if (verDb.length > 0) {
     console.log("base precargada  ", verDb.length);
-    // allDiets()
     return verDb;
   }
 
   const { data } = await axios.get(
     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
   );
-  console.log("linea 24");
+  
   const dataPretended = data.results.map((el) => {
     return getInfo(el);
   });
@@ -37,6 +36,7 @@ const getAllApiInformation = async () => {
 
 
 const allDiets = async () => {
+ 
   const verDbDiets = await DietsTypes.findAll();
   if (verDbDiets.length > 0) {
     console.log("base precargada diets", verDbDiets.length);

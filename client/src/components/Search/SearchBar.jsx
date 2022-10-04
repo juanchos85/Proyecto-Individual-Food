@@ -1,30 +1,30 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { get_recipe } from "../../Reduxx/Actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { get_Diets, get_recipe } from "../../Reduxx/Actions/actions";
 import { useRef } from "react";
 import Style from './Search.module.css'
 import { useEffect } from "react";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
-  // let [name, SetName] = useState();
+  const recipes = useSelector(state=> state.get_recipe)
   const lele = useRef(null)
 
 
   function handleChanges(e) {
     e.preventDefault();
-    // SetName(e.target.value)
+   
   }
   function handleSubmit(e) {
     e.preventDefault();
-    // let names = document.getElementById("id");
-    // console.log("soy names  " + names.value);
+
 const pepe = lele.current.value
     dispatch(get_recipe(pepe));
   }
   useEffect(()=>{
-    dispatch(get_recipe(""))
-  },[])
+    dispatch(get_recipe(" "))
+    dispatch(get_Diets())
+  },[recipes])
   return (
     <div>
       <form

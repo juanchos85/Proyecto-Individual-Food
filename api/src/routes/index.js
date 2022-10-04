@@ -10,8 +10,16 @@ const {
 const { Recipe, DietsTypes } = require("../db");
 const { getInfo } = require("../downloadData/reutilizable");
 
-getAllApiInformation();
-allDiets();
+
+// const s = ()=> getAllApiInformation();
+// const t = ()=>allDiets();
+// if(s.length === 0) return getAllApiInformation()
+// if(t.length === 0) return allDiets()
+// console.log(s.length," soy s")
+// console.log(t.length," soy t")
+let RecipesLoad = 0;
+RecipesLoad === 0 && getAllApiInformation();
+
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -26,12 +34,7 @@ router.get("/recipes/:id", async (req, res) => {
     const { data } = await axios.get(
       `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
     );
-    // const data = apiSpoon(id)
-    // const data = await Recipe.findAll({
-    //   where:{
-    //     idOriginal: id,
-    //   }
-    // })
+
     if (!id) return res.status(400).send("not found");
     return res.status(200).json(getInfo(data));
   } catch (error) {
@@ -57,8 +60,10 @@ router.get("/recipesCreated", async (req, res) => {
 });
 
 router.get("/recipes", async (req, res) => {
+
   const { name } = req.query;
   try {
+    
     if (name) {
       const dieta = await DietsTypes.findOne({
         where: {
@@ -130,6 +135,9 @@ router.post("/recipes", async (req, res) => {
 });
 
 router.get("/diets", async (req, res) => {
+  let DietsTypesLoad = 0;
+DietsTypesLoad === 0 && allDiets();
+
   const diets = await DietsTypes.findAll({
     include: Recipe,
   });

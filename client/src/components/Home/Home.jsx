@@ -31,18 +31,11 @@ export default function Home() {
     }
     },[dispatch, recipes]);
 
-    useEffect(()=>{
-      dispatch(get_Diets());
-      dispatch(get_recipe())
-    }, []
-    )
+  
 
     const DietsTypes = useSelector((state) => state.diets);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-   
-  }
+
   function HandlerDietsFilter(e) {
     dispatch(dietsFilter(e.target.value));
   }
