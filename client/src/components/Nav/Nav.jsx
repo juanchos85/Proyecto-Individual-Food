@@ -7,13 +7,19 @@ function Nav() {
   return (
     <div className={Style.Nav}>
       <span className={Style.components}>
-        <Link className={Style.title} to="/Home">Home</Link>
+        <Link className={Style.title} to="/Home">
+          Home
+        </Link>
       </span>
       <span className={Style.components}>
-        <Link className={Style.title} to="/RecipesCreated">Recipes Created</Link>
+        <Link className={Style.title} to="/RecipesCreated">
+          Recipes Created
+        </Link>
       </span>
       <span className={Style.components}>
-        <Link className={Style.title} to="/CreateRecipe">Share Your Own Recipe Here</Link>
+        <Link className={Style.title} to="/CreateRecipe">
+          Share Your Own Recipe Here
+        </Link>
       </span>
     </div>
   );

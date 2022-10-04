@@ -1,15 +1,16 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { showRecipesCreated } from "../../Reduxx/Actions/actions";
+import { showRecipesCreated, deleteRecipeCreated } from "../../Reduxx/Actions/actions";
 import Card from "../Card/Card";
-import { Link } from "react-router-dom";
+
 
 export default function RecipesCreated() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(showRecipesCreated());
-  },[]);
+    // dispatch(deleteRecipeCreated());
+  }, []);
   const recetasCreadas = useSelector((state) => state.created);
   return (
     <div>
@@ -17,9 +18,9 @@ export default function RecipesCreated() {
         ? recetasCreadas.map((el) => {
             return (
               <Card
-                key={el.id}
+                id={el.id}
                 name={el.name}
-                // idOriginal={}
+                deleteRecipe={deleteRecipeCreated}
                 image={el.image}
                 servings={el.servings}
                 diets={el.diets}

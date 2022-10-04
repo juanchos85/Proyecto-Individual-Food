@@ -10,9 +10,10 @@ export const SCORE_ORDER_D = "SCORE_ORDER_D";
 export const NAME_ORDER_A = "NAME_ORDER_A";
 export const NAME_ORDER_D = "NAME_ORDER_D";
 export const DELETE_RECIPE = "DELETE_RECIPE";
+export const DELETE_RECIPE_CREATED = "DELETE_RECIPE_CREATED";
 
 export function get_recipe(name) {
-   return async function (dispatch) {
+  return async function (dispatch) {
     try {
       const { data } = await axios.get(
         `http://localhost:3001/recipes?name=${name}`
@@ -64,18 +65,25 @@ export function get_Diets() {
   };
 }
 
-export const deleteRecipe = (id)=> {
+export const deleteRecipe = (id) => {
   return {
     type: DELETE_RECIPE,
-    payload: id
-  }
-}
+    payload: id,
+  };
+};
+
+export const deleteRecipeCreated = (id) => {
+  return {
+    type: DELETE_RECIPE_CREATED,
+    payload: id,
+  };
+};
 
 export function showRecipesCreated() {
   return async function (dispatch) {
     try {
       const { data } = await axios.get("http://localhost:3001/recipesCreated");
-      console.log(data, "soy data")
+      console.log(data, "soy data");
       return dispatch({ type: SHOW_RECIPES_CREATED, payload: data });
     } catch (error) {
       return dispatch({ type: SHOW_RECIPES_CREATED, payload: error });

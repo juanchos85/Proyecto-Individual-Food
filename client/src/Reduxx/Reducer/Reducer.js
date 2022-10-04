@@ -10,6 +10,7 @@ import {
   SCORE_ORDER_D,
   NAME_ORDER_A,
   NAME_ORDER_D,
+  DELETE_RECIPE_CREATED,
 } from "../Actions/actions";
 
 const initialState = {
@@ -17,7 +18,7 @@ const initialState = {
   details: [],
   diets: [],
   created: [],
-  msg:{},
+  msg: {},
 };
 function order(arr, prop) {
   let result = arr.sort(function (a, b) {
@@ -35,7 +36,6 @@ function order(arr, prop) {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_RECIPE: {
-     
       return {
         ...state,
         recipes: action.payload,
@@ -43,14 +43,12 @@ const reducer = (state = initialState, action) => {
     }
 
     case GET_DETAILS: {
-    
       return {
         ...state,
         details: action.payload,
       };
     }
     case CREATE_RECIPE: {
-     
       return {
         ...state,
         msg: "creada con exito!",
@@ -70,18 +68,23 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case DELETE_RECIPE:{
-     
-     
-      return{
+    case DELETE_RECIPE_CREATED: {
+      return {
         ...state,
-        recipes: state.recipes.filter(receta => receta.id !== action.payload)
-      }
+        created: state.created.filter((receta) => receta.id !== action.payload),
+      };
+    }
+
+    case DELETE_RECIPE: {
+      return {
+        ...state,
+        recipes: state.recipes.filter((receta) => receta.id !== action.payload),
+      };
     }
 
     case NAME_ORDER_A: {
       let orders;
-         orders = order([...state.recipes], 'name');
+      orders = order([...state.recipes], "name");
       return {
         ...state,
         recipes: orders,
@@ -90,7 +93,7 @@ const reducer = (state = initialState, action) => {
 
     case NAME_ORDER_D: {
       let orders;
-         orders = order([...state.recipes], 'name').reverse();
+      orders = order([...state.recipes], "name").reverse();
       return {
         ...state,
         recipes: orders,
@@ -99,7 +102,7 @@ const reducer = (state = initialState, action) => {
 
     case SCORE_ORDER_A: {
       let orders;
-         orders = order([...state.recipes], 'healthScore');
+      orders = order([...state.recipes], "healthScore");
       return {
         ...state,
         recipes: orders,
@@ -108,7 +111,7 @@ const reducer = (state = initialState, action) => {
 
     case SCORE_ORDER_D: {
       let orders;
-         orders = order([...state.recipes], 'healthScore').reverse();
+      orders = order([...state.recipes], "healthScore").reverse();
       return {
         ...state,
         recipes: orders,
@@ -116,14 +119,16 @@ const reducer = (state = initialState, action) => {
     }
 
     case DIETS_FILTER: {
-      let filter = state.recipes.filter((el) => el.diets.includes(action.payload));
+      let filter = state.recipes.filter((el) =>
+        el.diets.includes(action.payload)
+      );
 
       return {
         ...state,
         recipes: filter,
       };
     }
-  
+
     default:
       return { ...state };
   }

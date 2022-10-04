@@ -10,11 +10,8 @@ const {
 const { Recipe, DietsTypes } = require("../db");
 const { getInfo } = require("../downloadData/reutilizable");
 
-
-
 let RecipesLoad = 0;
 RecipesLoad === 0 && getAllApiInformation();
-
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -26,18 +23,22 @@ router.get("/recipes/:id", async (req, res) => {
   const { id } = req.params;
   console.log("soy id ", id);
   try {
-    const { data } = await axios.get(
-      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
-    );
-
+    // const { data } = await axios.get(
+    //   `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+    // );//
+    const data = await Recipe.findOne({
+      where: {
+        id: { [Op.eq]: id },
+      },
+    });
     if (!id) return res.status(400).send("not found");
-    return res.status(200).json(getInfo(data));
+    return res.status(200).json(data);
   } catch (error) {
     console.log(error);
     return res.status(400).send("error en la busqueda de detalles").json(error);
   }
 });
-//
+
 router.get("/recipesCreated", async (req, res) => {
   const created = await Recipe.findAll({
     where: {
@@ -55,10 +56,8 @@ router.get("/recipesCreated", async (req, res) => {
 });
 
 router.get("/recipes", async (req, res) => {
-
   const { name } = req.query;
   try {
-    
     if (name) {
       const dieta = await DietsTypes.findOne({
         where: {
@@ -74,7 +73,7 @@ router.get("/recipes", async (req, res) => {
         if (junction) {
           return res.status(200).json(junction);
         }
-      } else if(name){
+      } else if (name) {
         const recetas = await Recipe.findAll({
           where: {
             name: { [Op.iLike]: `%${name}%` },
@@ -86,13 +85,10 @@ router.get("/recipes", async (req, res) => {
           return "try with another product!";
         }
       }
+    } else {
+      const info = await Recipe.findAll();
+      return res.status(200).json(info);
     }
-     else{
-     
-        const info = await Recipe.findAll();
-        return res.status(200).json(info);
-      }
-    
   } catch (error) {
     console.log(error, " soy error de recipes");
     return res.status(400).json(error);
@@ -111,7 +107,7 @@ router.post("/recipes", async (req, res) => {
     cookingTime,
   } = req.body;
 
-  if (!name || !summary ||!steps || !diets )
+  if (!name || !summary || !steps || !diets)
     return res.status(404).send("Faltan enviar datos obligatorios");
   diets.map(async (el) => {
     const findDiet = await DietsTypes.findOrCreate({
@@ -131,7 +127,7 @@ router.post("/recipes", async (req, res) => {
 
 router.get("/diets", async (req, res) => {
   let DietsTypesLoad = 0;
-DietsTypesLoad === 0 && allDiets();
+  DietsTypesLoad === 0 && allDiets();
 
   const diets = await DietsTypes.findAll({
     include: Recipe,
