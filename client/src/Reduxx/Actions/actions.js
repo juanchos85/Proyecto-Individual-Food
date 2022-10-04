@@ -74,7 +74,8 @@ export const deleteRecipe = (id)=> {
 export function showRecipesCreated() {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get("http://localhost:3001//recipesCreated");
+      const { data } = await axios.get("http://localhost:3001/recipesCreated");
+      console.log(data, "soy data")
       return dispatch({ type: SHOW_RECIPES_CREATED, payload: data });
     } catch (error) {
       return dispatch({ type: SHOW_RECIPES_CREATED, payload: error });

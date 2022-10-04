@@ -11,12 +11,7 @@ const { Recipe, DietsTypes } = require("../db");
 const { getInfo } = require("../downloadData/reutilizable");
 
 
-// const s = ()=> getAllApiInformation();
-// const t = ()=>allDiets();
-// if(s.length === 0) return getAllApiInformation()
-// if(t.length === 0) return allDiets()
-// console.log(s.length," soy s")
-// console.log(t.length," soy t")
+
 let RecipesLoad = 0;
 RecipesLoad === 0 && getAllApiInformation();
 
@@ -42,11 +37,11 @@ router.get("/recipes/:id", async (req, res) => {
     return res.status(400).send("error en la busqueda de detalles").json(error);
   }
 });
-
+//
 router.get("/recipesCreated", async (req, res) => {
   const created = await Recipe.findAll({
     where: {
-      idOriginal: { [Op.is]: 123 },
+      idOriginal: { [Op.eq]: 123 },
     },
   });
   try {

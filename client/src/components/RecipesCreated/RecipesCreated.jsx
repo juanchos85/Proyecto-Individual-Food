@@ -19,13 +19,14 @@ export default function RecipesCreated() {
               <Card
                 key={el.id}
                 name={el.name}
-                idOriginal={el.idOriginal}
+                // idOriginal={}
                 image={el.image}
                 servings={el.servings}
+                diets={el.diets}
               />
             );
           })
-        : "todavía no has creado una receta"}
+        : alert("todavía no has creado una receta")}
     </div>
   );
 }

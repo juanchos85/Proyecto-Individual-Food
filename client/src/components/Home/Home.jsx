@@ -31,7 +31,11 @@ export default function Home() {
     }
     },[dispatch, recipes]);
 
-  
+    useEffect(()=>{
+      dispatch(get_Diets());
+      dispatch(get_recipe())
+    }, []
+    )
 
     const DietsTypes = useSelector((state) => state.diets);
 
@@ -96,7 +100,8 @@ export default function Home() {
         {paginado &&paginado.map((el)=>{
           return(
           <Card
-            key={el.idOriginal}
+            key={el.id}
+            id={el.idOriginal}
             deleteRecipe={deleteRecipe}
             name={el.name}
             idOriginal={el.idOriginal}

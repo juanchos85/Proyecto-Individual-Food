@@ -70,7 +70,7 @@ export default function CreateRecipe() {
     servings: 0,
     cookingTime: 0,
   });
-// setState()//para vaciar los campos después del submit
+
   const handleChange = (e) => {
     setState({
       ...state,

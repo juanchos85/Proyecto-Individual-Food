@@ -4,21 +4,21 @@ import { Link } from "react-router-dom";
 import { deleteRecipe } from "../../Reduxx/Actions/actions";
 import Style from './Card.module.css'
 
-export default function Card({ name, diets, image, idOriginal, cookingTime, servings, deleteRecipe }) {
+export default function Card({ name, diets, image, id, key, cookingTime, servings, deleteRecipe }) {
 
   const dispatch =useDispatch()
 
   
   return (
-    <div className={Style.card} key={idOriginal}>
+    <div className={Style.card} key={id}>
 
       <div >
-      <button className={Style.close} onClick={()=>dispatch(deleteRecipe(idOriginal))}>x</button>
+      <button className={Style.close} onClick={()=>dispatch(deleteRecipe(id))}>x</button>
       </div>
-     
-      <Link to={`/CardDetail/${idOriginal}`}>
+     {id !== 123 ?
+      <Link to={`/CardDetail/${id}`}>
         <h4 className={Style.title}>{name}</h4>
-      </Link>
+      </Link> : <h4 className={Style.title}>{name}</h4>}
       <section>
         <p>⏲️ {cookingTime}' </p>
         <p>🧍 {servings}</p>
@@ -34,7 +34,7 @@ export default function Card({ name, diets, image, idOriginal, cookingTime, serv
 
 // Tipo de dieta (vegetariano, vegano
 
-// idOriginal: obj.id,
+// id: obj.id,
 // name: obj.title.toLowerCase(),
 // summary: obj.summary,
 // healthScore: obj.healthScore,
