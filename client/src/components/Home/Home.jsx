@@ -100,8 +100,8 @@ export default function Home() {
         {paginado &&paginado.map((el)=>{
           return(
           <Card
-            key={el.id}
-            id={el.idOriginal}
+           
+            id={el.id}
             deleteRecipe={deleteRecipe}
             name={el.name}
             idOriginal={el.idOriginal}

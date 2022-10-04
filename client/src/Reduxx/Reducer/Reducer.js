@@ -75,7 +75,7 @@ const reducer = (state = initialState, action) => {
      
       return{
         ...state,
-        recipes: state.recipes.filter(receta => receta.idOriginal !== action.payload)
+        recipes: state.recipes.filter(receta => receta.id !== action.payload)
       }
     }
 
