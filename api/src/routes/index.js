@@ -121,6 +121,7 @@ router.post("/recipes", async (req, res) => {
     const receta = await Recipe.create(req.body);
     return res.status(200).json(receta);
   } catch (error) {
+    console.log(error, "soy error")
     return res.status(402).json(error);
   }
 });

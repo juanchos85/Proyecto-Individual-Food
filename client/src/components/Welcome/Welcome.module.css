@@ -1,5 +1,5 @@
 .Welcome {
-    margin: 0%;
+    padding-left: 12px ;
     display: flex;
     padding: auto;
     background-image: url(../../Images/depositphotos_52700729-stock-photo-recipes-written-on-chalkboard-close.jpg);
@@ -8,9 +8,21 @@
     background-attachment: fixed;
     width: 100vw; 
     height: 100vw;
- 
+    text-decoration: none;
+    
 }
 
 .text{
     color: aqua;
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    padding-left: 30%;
+    text-decoration: none;
+    padding-top: 13%;
+    align-items: center;
+    text-decoration: none;
+
+}
+.text:hover{
+    color: crimson;
 }

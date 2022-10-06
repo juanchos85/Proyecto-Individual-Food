@@ -1,15 +1,13 @@
-import React  from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Style from '../Welcome/Welcome.module.css'
+import Style from "../Welcome/Welcome.module.css";
 
-
-export default function Welcome(){
-    return(
-        <div className={Style.Welcome}>
-            <h1 className={Style.text} color="red">
-             Welcome
-            </h1>
-            <Link to="/home" color="red">Begin your experience, here</Link>
-        </div>
-    )
+export default function Welcome() {
+  return (
+    <div className={Style.Welcome}>
+      <Link to="/home" >
+        <h1 className={Style.text}>Begin your own experience here</h1>
+      </Link>
+    </div>
+  );
 }

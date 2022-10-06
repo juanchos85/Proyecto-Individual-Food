@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function SearchBar() {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => state.get_recipe);
-  const lele = useRef(null);
+  const ref = useRef(null);
 
   function handleChanges(e) {
     e.preventDefault();
@@ -16,8 +16,8 @@ export default function SearchBar() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const pepe = lele.current.value;
-    dispatch(get_recipe(pepe));
+    const inputValue = ref.current.value;
+    dispatch(get_recipe(inputValue));
   }
   useEffect(() => {
     dispatch(get_recipe(" "));
@@ -31,8 +31,7 @@ export default function SearchBar() {
         }}
       >
         <input
-          // id="id"
-          ref={lele}
+          ref={ref}
           type="text"
           placeholder="busqueda de producto..."
           onChange={(e) => handleChanges(e)}
