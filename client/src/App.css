@@ -1,19 +1,24 @@
 .App {
   text-align: center;
 }
-.body,input{
-  font-family: 'Times New Roman', Times, serif;
+.body,
+input {
+  font-family: "Times New Roman", Times, serif;
 }
 
-body{
-  background:url('./Images/images\(5\).jpg');
-  background-size: contain;
-  margin: 0;
-  padding: 0;
+body {
+  display: grid;
+  background-image: url('https://media.istockphoto.com/id/924476838/es/foto/deliciosa-pizza-con-los-ingredientes-y-especias.jpg?s=612x612&w=0&k=20&c=S1DsWSKnoRnF8fAinomrzI1CVszVQvyepHeWMNPR73g=');
+    /* background-repeat: no-repeat; */
+    background-attachment: fixed, scroll;
+    background-repeat: no-repeat, repeat-y;
+  background-size:cover;
+ height: 100%;
+ min-height: 100vh;
 
 }
-:root{
-  color:#282c34;
+:root {
+  color: #282c34;
 }
 .App-logo {
   height: 40vmin;

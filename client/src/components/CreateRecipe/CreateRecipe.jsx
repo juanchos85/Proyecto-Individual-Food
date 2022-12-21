@@ -9,20 +9,14 @@ function validate(state) {
   let errors = {};
   if (!state.name) {
     errors.name = "Name required";
-  } else if (state.name.length < 3) {
-    errors.name = "Name must be longar than three characteres";
-  }
+  } 
   if (!state.diets) {
     errors.name = "diets required";
-  } else if (state.diets.length > 3) {
-    errors.diets = "diets must be longar than three characteres";
   }
 
   if (!state.dishType) {
     errors.dishType = "dishType required";
-  } else if (state.dishType.length > 1) {
-    errors.dishType = "dishType must be longar than three characteres";
-  }
+  } 
 
   if (!state.summary) {
     errors.summary = "summury is required";
@@ -30,25 +24,23 @@ function validate(state) {
 
   if (!state.steps) {
     errors.steps = "steps is required";
-  } else if (state.steps.length > 1) {
-    errors.steps = "steps must be longar than three characteres";
-  }
+  } 
 
   if (state.healthScore === 0) {
-    errors.healthScore = "healthScore required";
+    errors.healthScore = "health Score required";
   } else if (state.healthScore > 100 || state.healthScore < 0) {
-    errors.healthScore = "healthScore must be longer than 0, and less than 100";
+    errors.healthScore = "health Score required";
   }
 
   if (!state.servings) {
-    errors.servings = "servings required";
+    errors.servings = "Servings required";
   }
 
   if (!state.cookingTime) {
-    errors.cookingTime = "cookingTime required";
+    errors.cookingTime = "Cooking Time required";
   }
   if (!state.diets.length === 0) {
-    errors.diets = "diets required";
+    errors.diets = "Diets required";
   }
 
   return errors;
@@ -96,18 +88,18 @@ export default function CreateRecipe() {
       })
     );
   };
-  const handleChangeDishType = (e) => {
-    setErrors(
-      validate({
-        ...state,
-        diets: [...state.diets, e.target.value],
-      })
-    );
-    setState({
-      ...state,
-      dishType: [e.target.value],
-    });
-  };
+  // const handleChangeDishType = (e) => {
+  //   setErrors(
+  //     validate({
+  //       ...state,
+  //       diets: [...state.diets, e.target.value],
+  //     })
+  //   );
+  //   setState({
+  //     ...state,
+  //     dishType: [e.target.value],
+  //   });
+  // };
 
   function HandlerDietsFilter(e) {
     dispatch(dietsFilter(e.target.value));
@@ -115,7 +107,7 @@ export default function CreateRecipe() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let test = Object.values(errors);
+   let  test = Object.values(errors);
     if (test.length > 0) {
       alert("completar correctamente");
     } else {
@@ -136,7 +128,8 @@ export default function CreateRecipe() {
       }}
       className={Style.background}
     >
-      <div className={Style.body}>
+      {/* <div className={Style.body}> */}
+        <div className={Style.short}>
         <label>Name: </label>
         <input
           name="name"
@@ -147,21 +140,10 @@ export default function CreateRecipe() {
             handleChange(e);
           }}
         />
-        {errors.name && <h6>{errors.name}</h6>}
+         
+        {errors.name && <h6 Style="color:white">{errors.name}</h6>}
 
-        <label>Summary: </label>
-        <input
-          className={Style.placeHolder}
-          name="summary"
-          type="text"
-          value={state.summary}
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        />
-        {errors.summary && <h6>{errors.summary}</h6>}
-
-        <label>HealthScore: </label>
+        <label>Health Score: </label>
         <input
           className={Style.placeHolder}
           name="healthScore"
@@ -171,30 +153,6 @@ export default function CreateRecipe() {
             handleChange(e);
           }}
         />
-
-        <label>tipo de plato: </label>
-        <input
-          className={Style.placeHolder}
-          name="dishType"
-          type="text"
-          value={state.dishType}
-          onChange={(e) => {
-            handleChangeDishType(e);
-          }}
-        />
-        {errors.dishType && <h6>{errors.dishType}</h6>}
-
-        <label>Step By Step: </label>
-        <input
-          className={Style.placeHolder}
-          name="steps"
-          type="text"
-          value={state.steps}
-          onChange={(e) => {
-            handleChangeSteps(e);
-          }}
-        />
-        {errors.steps && <h6>{errors.steps}</h6>}
 
         <label>Imagen: </label>
         <input
@@ -207,20 +165,20 @@ export default function CreateRecipe() {
           }}
         />
 
-        <label>tipo de dietas: </label>
+        <label>Diet Type: </label>
         <select
-          className={Style.placeHolder}
+          className={Style.placeHolderDiet}
           defaultValue="default"
           onChange={(e) => HandlerDietsFilter(e)}
         >
-          <option className={Style.placeHolder} value="default">
-            opciones de dietas
+          <option  className={Style.placeHolderD}>
+            Diet Types
           </option>
           {DietsTypes &&
             DietsTypes.map((el) => {
               return (
                 <option
-                  className={Style.placeHolder}
+                  className={Style.placeHolderP}
                   key={el.id}
                   value={el.name}
                 >
@@ -229,9 +187,9 @@ export default function CreateRecipe() {
               );
             })}
         </select>
-        {errors.diets && <h6>{errors.diets}</h6>}
+        {errors.diets && <h6 Style="color:white">{errors.diets}</h6>}
 
-        <label>Porciones</label>
+        <label htmlFor="servings">Servings: </label>
         <input
           className={Style.placeHolder}
           name="servings"
@@ -241,9 +199,9 @@ export default function CreateRecipe() {
             handleChange(e);
           }}
         />
-        {errors.servings && <h6>{errors.servings}</h6>}
+        {errors.servings && <h6 Style="color:white">{errors.servings}</h6>}
 
-        <label>Tiempo de cocción: </label>
+        <label>Cooking Time: </label>
         <input
           className={Style.placeHolder}
           name="cookingTime"
@@ -253,12 +211,54 @@ export default function CreateRecipe() {
             handleChange(e);
           }}
         />
-        {errors.cookingTime && <h6>{errors.cookingTime}</h6>}
+     
+        {errors.cookingTime && <h6 Style="color:white">{errors.cookingTime}</h6>}
+        </div>
+        {/* <label>tipo de plato: </label>
+        <input
+        className={Style.placeHolder}
+        name="dishType"
+        type="text"
+        value={state.dishType}
+        onChange={(e) => {
+          handleChangeDishType(e);
+        }}
+        />
+      {errors.dishType && <p>{errors.dishType}</p>} */}
+       <div className={Style.long}>
+        <label>Summary: </label>
+        <textarea
+          className={Style.placeHolder}
+          name="summary"
+          id="long"
+          type="text"
+          value={state.summary}
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        />
+        {errors.summary && <h6 Style="color:white">{errors.summary}</h6>}
 
-        <button className={Style.button} type="submit">
-          compartir receta
+        <label Style="padding-top:1rem">Step By Step: </label>
+        <textarea
+          className={Style.placeHolder}
+          id="long"
+          name="steps"
+          type="text"
+          value={state.steps}
+          onChange={(e) => {
+            handleChangeSteps(e);
+          }}
+        />
+        </div>
+        {errors.steps && <h6 Style="color:white">{errors.steps}</h6>}
+       <div>
+       <button  className={Style.button} type="submit">
+          Create Recipe
         </button>
-      </div>
+       </div>
+   
+   
     </form>
   );
 }

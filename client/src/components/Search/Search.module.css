@@ -1,30 +1,42 @@
 .button {
-    border-radius: 1px;
-    font-family:Impact, Haettenschweiler, 'Times New Arial', sans-serif;
-    /* width: 2rem;
-    height: 2rem; */
-    /* font-size: 14px; */
-    /* 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    color: #2f8814b4;
-    border-color: #44f32193;
-    background: #f3f3f371;
-    border-width: 1px;
-    border-style: solid;
-    border-width: 0.5px;
-    font-family: "Ubuntu", sans-serif;
-    transition: 0.25s ease;
-    cursor: pointer;
-    margin: 2px;
-    */
-  } 
-  /* .button:hover {
-    background: #75f321;
-    color: #fff;
-    border-radius: 30px;
-    text-shadow: 1px 1px 2px #588842;
-    box-shadow: 0 0 20px rgba(26, 31, 6, 0.863);
-  } */
+  display: flex;
+  margin-right: 1rem;
+  background-color: #790c0c;
+  border-radius: 15rem;
+  color: white;
+  height: 30px;
+  font-size: 14px;
+  min-width: 23px;
+  cursor: pointer;
+  font-family: "Ubuntu", sans-serif;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+.button::placeholder {
+  color: white;
+}
+::placeholder{
+  color:rgba(255, 255, 255, 0.37);
+
+}
+
+.search {
+  background-color: transparent;
+  border-radius: 4px;
+  border: solid 1px rgba(128, 128, 128, 0.823);
+  backdrop-filter: blur(5px);
+  width: fit-content;
+  display: flex;
+  margin-right: 8px;
+  justify-content: center;
+  align-items: center;
+  height: 23px;
+  box-shadow: 2px 2px #790c0c;
+  color:white;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}

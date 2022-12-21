@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Nav from "../Nav/Nav";
 import Card from "../Card/Card";
 import { useEffect } from "react";
 import Paginate from "../Paginate/Paginate";
@@ -16,6 +17,7 @@ import {
   deleteRecipe,
 } from "../../Reduxx/Actions/actions";
 import SearchBar from "../Search/SearchBar";
+
 export default function Home() {
   const recipes = useSelector((state) => state.recipes);
   const dispatch = useDispatch();
@@ -59,37 +61,51 @@ export default function Home() {
 
   return (
     <div className={Style.Home}>
-      <span className={Style.search}>
-        <SearchBar />
-      </span>
-      <div>
-        <Paginate paginado={recipes} setPaginado={setPaginado}></Paginate>
-      </div>
-      <div>
-        <select defaultValue="default" onChange={(e) => handleOrderByName(e)}>
-          <option defaultValue="default">orden por nombre</option>
-          <option value="ascendente">ascendente</option>
-          <option value="descendente">descendente</option>
-        </select>
+      <div className={Style.main}>
+        <Paginate
+          className={Style.paginate}
+          paginado={recipes}
+          setPaginado={setPaginado}
+        ></Paginate>
 
-        <select defaultValue="default" onChange={(e) => handleOrderByScore(e)}>
-          <option defaultValue="default">orden por puntaje</option>
-          <option value="ascendente">ascendente</option>
-          <option value="descendente">descendente</option>
-        </select>
-      </div>
-      <div>
-        <select defaultValue="default" onChange={(e) => HandlerDietsFilter(e)}>
-          <option value="default">opciones de dietas</option>
-          {DietsTypes &&
-            DietsTypes.map((el) => {
-              return (
-                <option key={el.id} value={el.name}>
-                  {el.name}
-                </option>
-              );
-            })}
-        </select>
+        <SearchBar className={Style.search} />
+        <span>
+          <select
+            Style="background-color:#790c0c; border: black solid 2px;"
+            defaultValue="default"
+            onChange={(e) => HandlerDietsFilter(e)}
+          >
+            <option Style="padding-bottom:4px" value="default">Diets Order</option>
+            {DietsTypes &&
+              DietsTypes.map((el) => {
+                return (
+                  <option key={el.id} value={el.name}>
+                    {el.name}
+                  </option>
+                );
+              })}
+          </select>
+
+          <select
+            Style="background-color:#790c0c; border: black solid 2px;"
+            defaultValue="default"
+            onChange={(e) => handleOrderByName(e)}
+          >
+            <option defaultValue="default">A-Z</option>
+            <option value="ascendente">Up Ward</option>
+            <option value="descendente">Falling</option>
+          </select>
+
+          <select
+            Style="background-color:#790c0c; border: black solid 2px;"
+            defaultValue="default"
+            onChange={(e) => handleOrderByScore(e)}
+          >
+            <option defaultValue="default">Score</option>
+            <option value="ascendente">Up Ward</option>
+            <option value="descendente">Falling</option>
+          </select>
+        </span>
       </div>
       <div className={Style.cards}>
         {paginado &&

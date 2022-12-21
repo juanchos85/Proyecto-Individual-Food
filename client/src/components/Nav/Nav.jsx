@@ -18,7 +18,7 @@ function Nav() {
       </span>
       <span className={Style.components}>
         <Link className={Style.title} to="/CreateRecipe">
-          Share Your Own Recipe Here
+          Create a Recipe
         </Link>
       </span>
     </div>

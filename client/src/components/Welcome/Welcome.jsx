@@ -6,7 +6,7 @@ export default function Welcome() {
   return (
     <div className={Style.Welcome}>
       <Link to="/home" >
-        <h1 className={Style.text}>Begin your own experience here</h1>
+        <h1 className={Style.text}>Begin your own experience </h1>
       </Link>
     </div>
   );

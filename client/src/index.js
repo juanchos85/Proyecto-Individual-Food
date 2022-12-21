@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'normalize.css';
 import './index.css';
 import App from './App';
 import dotenv from "dotenv";
@@ -13,10 +14,10 @@ dotenv.config();
 ReactDOM.render(
   <BrowserRouter>
   <Provider store={store}>
- 
-  <React.StrictMode>
+{/*  
+  <React.StrictMode> */}
     <App />
-  </React.StrictMode>,
+  {/* </React.StrictMode>, */}
   </Provider>,
   </BrowserRouter>,
   document.getElementById('root')

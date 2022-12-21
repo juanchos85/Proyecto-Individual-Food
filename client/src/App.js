@@ -20,7 +20,6 @@ function App() {
 
           <React.Fragment>
             <Nav />
-
             <Route exact path="/home" component={Home} />
             <Route path="/SearchBar" component={SearchBar} />
             <Route path="/Card" component={Card} />

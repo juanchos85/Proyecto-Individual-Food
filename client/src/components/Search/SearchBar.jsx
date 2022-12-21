@@ -28,15 +28,17 @@ export default function SearchBar() {
       <form
         onSubmit={(e) => {
           handleSubmit(e);
+          
         }}
       >
         <input
           ref={ref}
           type="text"
-          placeholder="busqueda de producto..."
+          placeholder="Searching..."
           onChange={(e) => handleChanges(e)}
+          className={Style.search}
         />
-        <input className={Style.button} type="submit" value="Agregar" />
+        <input className={Style.button} type="submit" value="Search" />
       </form>
     </div>
   );

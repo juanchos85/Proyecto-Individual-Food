@@ -11,30 +11,36 @@ export default function CardDetail(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(get_Detail(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
   const details = useSelector((state) => state.details);
   console.log(details, " soy details");
   return (
-    <div className={Style.parent}>
-      <div className={Style.div1}>
-        <h1>{details.name}</h1>
-      </div>
-      <div className={Style.div2}>
-        <img className={Style.img} src={details.image} alt="" />
-        <p>Diets Type: {details.diets}</p>
-        <p>Dish Type: {details.dishTypes}</p>
-        <p>Health Score: {details.healthScore}</p>
-      </div>
-      <div className={Style.div3}>
-        <div>
-          <p>Cooking Steps: </p>
-          <p>{details.steps}</p>
+    <div >
+
+      <h1 className={Style.title}>{details.name}</h1>
+
+      <div className={Style.main}>
+
+        <div className={Style.contenedor}>
+          <img className={Style.img} src={details.image} alt="" />
+          <p>Diets Type: {details.diets}</p>
+          {/* <p>Dish Type: {details.dishTypes}</p> */}
+          <p>Health Score: {details.healthScore}</p>
         </div>
-        <div>
-          <p>Summary: </p>
-          <p dangerouslySetInnerHTML={{ __html: details.summary }}></p>
+        
+        <div className={Style.details}>
+          <div>
+            <p>Cooking Steps: </p>
+            <p>{details.steps}</p>
+          </div>
+          <div>
+            <p>Summary: </p>
+            <p dangerouslySetInnerHTML={{ __html: details.summary }}></p>
+          </div>
         </div>
+
       </div>
+
     </div>
   );
 }

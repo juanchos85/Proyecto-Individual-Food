@@ -1,24 +1,62 @@
-.Home{  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.cards{
-  margin-top: 1rem;
+.cards {
+  margin: 3rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 30vw;
+
+}
+.main{
+  display: grid;
+  flex-direction: row;
+  
+  grid-template-columns: repeat(3,1fr);
+  justify-items: center;
+  padding-top: 8px;
+  padding: 8px;
+}
+select{
+  height: 23px;
+  font-stretch: normal;  
+}
+@media only screen and (max-width: 600px) {
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+   
+    backdrop-filter: blur(400px);
+    height: 400px;
+    width: 200px;
+    
+  }
+ 
 }
 
+.paginate button{
+  border-radius: 10px;
+  height: 23px;
+  background-color: #790c0c;
 
-  .serach{
-    position: fixed;
-    top: 0;
-    left: 0;
-    justify-content: left;
-    justify-items: left;
-  }
-  
+}
+select{
+
+  height: 30px;
+  border-radius: 10px;
+  text-align: center;
+  text-size-adjust:initial;
+  background-color: #790c0c;
+  color:white;
+  background-color: transparent;
+  backdrop-filter: blur(8px);
+  margin-right: 8px;
+
+}
+
+select> option{
+  padding-bottom: 3px;
+}

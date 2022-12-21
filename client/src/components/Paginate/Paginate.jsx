@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { get_recipe } from "../../Reduxx/Actions/actions";
+import Style  from "./Paginate.module.css";
 
 export default function Paginate({ paginado, setPaginado }) {
   const recipes = useSelector((state) => state.recipes);
@@ -9,6 +10,7 @@ export default function Paginate({ paginado, setPaginado }) {
 
   let quantity = 9;
   let total = paginado.length;
+  
   let paginate = Math.ceil(total / quantity);
   const [current, setCurrent] = useState(1);
   const changePage = (current) => {
@@ -22,31 +24,36 @@ export default function Paginate({ paginado, setPaginado }) {
     get_recipe();
   }, [recipes]);
   return (
-    <div>
+    <div className={Style.body} >
       <button
+      // hidden={current === 1 && true}
         className={`button ${current === 1}`}
         onClick={() => changePage(1)}
       >
-        begin
+        Begin
       </button>
       <button
+        hidden={current === 1 && true}
         className={`button ${current === 1}`}
         onClick={() => changePage(current - 1)}
       >
-        previous
+        -
       </button>
       <button>{current}</button>
       <button
+      hidden={current === paginate && true}
         className={`button ${current === total}`}
         onClick={() => changePage(current + 1)}
       >
-        next
+        +
       </button>
       <button
+      // hidden={current === paginate && true}
+
         className={`button ${current === total}`}
         onClick={() => changePage(paginate)}
       >
-        end
+        End
       </button>
     </div>
   );
