@@ -112,6 +112,7 @@ export default function Home() {
           paginado.map((el) => {
             return (
               <Card
+                key={el.id}
                 id={el.id}
                 deleteRecipe={deleteRecipe}
                 name={el.name}

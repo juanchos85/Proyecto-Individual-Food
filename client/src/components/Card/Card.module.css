@@ -1,13 +1,12 @@
 .card {
- 
   display: grid;
   grid-template-rows: auto;
   align-items: center;
   justify-content: center;
   box-shadow: 3px 3px #790c0c;
-  height: 300px; 
+  height: 300px;
   padding: 1.5rem;
-padding-bottom: 1rem;
+  padding-bottom: 1rem;
   backdrop-filter: blur(8px);
   border-radius: 8px;
 }
@@ -43,7 +42,7 @@ padding-bottom: 1rem;
   border-radius: 100px;
   border: 40px solid blueviolet;
   background-color: rgb(97, 96, 96);
-  
+
   border: 1cm;
 }
 .close:hover {
@@ -79,18 +78,12 @@ section > span {
 .image {
   margin-bottom: 1rem;
   display: block;
-  margin:auto;
-
+  margin: auto;
 }
-.image>img {
-
-  /* object-fit: cover; */
-  /* width:60%;
-  height:100%; */
+.image > img {
   width: 200px;
   height: 150px;
   max-height: 200px;
-  /* width: auto; */
 
   border-radius: 10px;
 }

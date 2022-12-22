@@ -13,7 +13,7 @@ export default function RecipesCreated() {
   useEffect(() => {
     dispatch(showRecipesCreated());
     // dispatch(deleteRecipeCreated());
-  }, []);
+  }, [dispatch]);
   return (
     <div className={Style.main}>
       {recetasCreadas
@@ -26,6 +26,7 @@ export default function RecipesCreated() {
                 deleteRecipe={deleteRecipeCreated}
                 image={el.image}
                 servings={el.servings}
+                cookingTime={el.cookingTime}
                 diets={el.diets}
               />
             );

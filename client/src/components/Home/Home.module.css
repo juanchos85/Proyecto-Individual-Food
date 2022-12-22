@@ -26,13 +26,16 @@ select{
 }
 @media only screen and (max-width: 600px) {
   .cards {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
+
    
     backdrop-filter: blur(400px);
     height: 400px;
     width: 200px;
     
+  }
+  .home{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
   }
  
 }

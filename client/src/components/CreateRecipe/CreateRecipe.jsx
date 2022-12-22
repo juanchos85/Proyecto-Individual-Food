@@ -2,49 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { create_Recipe } from "../../Reduxx/Actions/actions";
 import { useSelector } from "react-redux";
-import { get_Diets, dietsFilter } from "../../Reduxx/Actions/actions";
+import { get_Diets } from "../../Reduxx/Actions/actions";
 import Style from "./CreateRecipe.module.css";
-
-function validate(state) {
-  let errors = {};
-  if (!state.name) {
-    errors.name = "Name required";
-  } 
-  if (!state.diets) {
-    errors.name = "diets required";
-  }
-
-  if (!state.dishType) {
-    errors.dishType = "dishType required";
-  } 
-
-  if (!state.summary) {
-    errors.summary = "summury is required";
-  }
-
-  if (!state.steps) {
-    errors.steps = "steps is required";
-  } 
-
-  if (state.healthScore === 0) {
-    errors.healthScore = "health Score required";
-  } else if (state.healthScore > 100 || state.healthScore < 0) {
-    errors.healthScore = "health Score required";
-  }
-
-  if (!state.servings) {
-    errors.servings = "Servings required";
-  }
-
-  if (!state.cookingTime) {
-    errors.cookingTime = "Cooking Time required";
-  }
-  if (!state.diets.length === 0) {
-    errors.diets = "Diets required";
-  }
-
-  return errors;
-}
+import validate from "./validate";
 
 export default function CreateRecipe() {
   const DietsTypes = useSelector((state) => state.diets);
@@ -101,18 +61,43 @@ export default function CreateRecipe() {
   //   });
   // };
 
-  function HandlerDietsFilter(e) {
-    dispatch(dietsFilter(e.target.value));
-  }
+  const handleChangeDiets = (e) => {
+    setState({
+      ...state,
+      diets: [e.target.value],
+    });
+
+    setErrors(
+      validate({
+        ...state,
+        diets: [...state.diets, e.target.value],
+      })
+    );
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   let  test = Object.values(errors);
+    let test = Object.values(errors);
     if (test.length > 0) {
-      alert("completar correctamente");
+      alert("Fill properly");
     } else {
-      if (state.name.length < 3) return alert("Completar campos");
+      if (state.name.length < 3) return alert("Fill all the filds");
+
       dispatch(create_Recipe(state));
+      setState({
+        name: "",
+        summary: "",
+        healthScore: 0,
+        steps: [],
+        dishType: [],
+        idOriginal: 123,
+        image: "",
+        diets: (document
+          .getElementById("firstSelect")
+          .getElementsByTagName("option")[0].selected = "selected"),
+        servings: 0,
+        cookingTime: 0,
+      });
       alert("receta creada");
     }
   };
@@ -128,8 +113,7 @@ export default function CreateRecipe() {
       }}
       className={Style.background}
     >
-      {/* <div className={Style.body}> */}
-        <div className={Style.short}>
+      <div className={Style.short}>
         <label>Name: </label>
         <input
           name="name"
@@ -140,7 +124,7 @@ export default function CreateRecipe() {
             handleChange(e);
           }}
         />
-         
+
         {errors.name && <h6 Style="color:white">{errors.name}</h6>}
 
         <label>Health Score: </label>
@@ -166,14 +150,24 @@ export default function CreateRecipe() {
         />
 
         <label>Diet Type: </label>
+        {/* 
+            <option Style="padding-bottom:4px" value="default">Diets Order</option>
+            {DietsTypes &&
+              DietsTypes.map((el) => {
+                return (
+                  <option key={el.id} value={el.name}>
+                    {el.name}
+                  </option>
+                );
+              })}
+          </select> */}
         <select
+          id="firstSelect"
           className={Style.placeHolderDiet}
           defaultValue="default"
-          onChange={(e) => HandlerDietsFilter(e)}
+          onChange={(e) => handleChangeDiets(e)}
         >
-          <option  className={Style.placeHolderD}>
-            Diet Types
-          </option>
+          <option className={Style.placeHolderD}>Diet Types</option>
           {DietsTypes &&
             DietsTypes.map((el) => {
               return (
@@ -211,10 +205,12 @@ export default function CreateRecipe() {
             handleChange(e);
           }}
         />
-     
-        {errors.cookingTime && <h6 Style="color:white">{errors.cookingTime}</h6>}
-        </div>
-        {/* <label>tipo de plato: </label>
+
+        {errors.cookingTime && (
+          <h6 Style="color:white">{errors.cookingTime}</h6>
+        )}
+      </div>
+      {/* <label>tipo de plato: </label>
         <input
         className={Style.placeHolder}
         name="dishType"
@@ -225,7 +221,7 @@ export default function CreateRecipe() {
         }}
         />
       {errors.dishType && <p>{errors.dishType}</p>} */}
-       <div className={Style.long}>
+      <div className={Style.long}>
         <label>Summary: </label>
         <textarea
           className={Style.placeHolder}
@@ -250,15 +246,13 @@ export default function CreateRecipe() {
             handleChangeSteps(e);
           }}
         />
-        </div>
-        {errors.steps && <h6 Style="color:white">{errors.steps}</h6>}
-       <div>
-       <button  className={Style.button} type="submit">
+      </div>
+      {errors.steps && <h6 Style="color:white">{errors.steps}</h6>}
+      <div>
+        <button className={Style.button} type="submit">
           Create Recipe
         </button>
-       </div>
-   
-   
+      </div>
     </form>
   );
 }
