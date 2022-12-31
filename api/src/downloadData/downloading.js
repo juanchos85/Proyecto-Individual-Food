@@ -21,7 +21,7 @@ const getAllApiInformation = async () => {
     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
   );
   
-  const dataPretended = data.results.map((el) => {
+  const dataPretended = await data.results.map((el) => {
     return getInfo(el);
   });
   try {
@@ -29,7 +29,7 @@ const getAllApiInformation = async () => {
     console.log("cargando db por 1° ", db.length);
     return db;
   } catch (error) {
-    console.log( "error catch juan", error);
+    console.log( "error db 1°time", error);
     return error;
   }
 };
@@ -50,7 +50,7 @@ const allDiets = async () => {
      allDiets.push( el.diets)
     })
   const s = allDiets.flat(2)
-  s.map(async (dieta) => {
+  s.map((dieta) => {
       DietsTypes.findOrCreate({
         where: { name: dieta },
       });

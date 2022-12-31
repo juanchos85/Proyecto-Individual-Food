@@ -1,5 +1,6 @@
 require("dotenv").config();
 const { default: axios } = require("axios");
+
 const { Router } = require("express");
 const { Op, Association } = require("sequelize");
 const { API_KEY } = process.env;
