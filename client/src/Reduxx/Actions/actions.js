@@ -11,7 +11,7 @@ export const NAME_ORDER_A = "NAME_ORDER_A";
 export const NAME_ORDER_D = "NAME_ORDER_D";
 export const DELETE_RECIPE = "DELETE_RECIPE";
 export const DELETE_RECIPE_CREATED = "DELETE_RECIPE_CREATED";
-let api = "api-production-9688.up.railway.app";
+let api = "https://api-production-9688.up.railway.app";
 export function get_recipe(name) {
   return async function (dispatch) {
     try {
